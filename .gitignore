@@ -1,3 +1,4 @@
+# Unity generated files
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -34,3 +35,13 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
