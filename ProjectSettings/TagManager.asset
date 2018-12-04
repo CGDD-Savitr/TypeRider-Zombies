@@ -10,6 +10,7 @@ TagManager:
   - FloorTrigger
   - Table
   - Zombie
+  - PlayerInput
   layers:
   - Default
   - TransparentFX
