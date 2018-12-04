@@ -5,6 +5,10 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour {
+	public Text LeftKeyword;
+
+	public Text RightKeyword;
+
 	GameController controller;
 
 	void Awake()
@@ -15,15 +19,16 @@ public class InputHandler : MonoBehaviour {
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString();
-		Debug.Log("Input: " + value);
-		if (value == "right")
+		if (value == RightKeyword.text)
 		{
 			controller.MovePlayerRight();
+			// Change right keyword
 			field.text = "";
 		}
-		else if (value == "left")
+		else if (value == LeftKeyword.text)
 		{
 			controller.MovePlayerLeft();
+			// Change left keyword
 			field.text = "";
 		}
 	}
