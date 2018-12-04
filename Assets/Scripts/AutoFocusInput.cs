@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AutoFocusInput 	: MonoBehaviour {
-	void Start () {
+public class AutoFocusInput : MonoBehaviour {
+	InputField inputField;
+	
+	void Awake()
+	{
 		GameObject obj = GameObject.FindGameObjectWithTag("PlayerInput");
 		if (obj != null)
 		{
-			InputField inputField = obj.GetComponent<InputField>();
-			if (inputField != null)
-			{
-				Debug.Log("PlayerInput selected");
-				inputField.Select();
-				inputField.ActivateInputField();
-			}
-			else
+			inputField = obj.GetComponent<InputField>();
+			if (inputField == null)
 			{
 				Debug.Log("PlayerInput is not InputField");
 			}
@@ -24,5 +21,20 @@ public class AutoFocusInput 	: MonoBehaviour {
 		{
 			Debug.Log("No component with PlayerInput tag");
 		}
+	}
+	
+	void Update()
+	{
+		if (!inputField.isFocused)
+		{
+			SelectInputField();
+		}
+	}
+
+	void SelectInputField()
+	{
+		Debug.Log("PlayerInput selected");
+		inputField.Select();
+		inputField.ActivateInputField();
 	}
 }
