@@ -21,5 +21,10 @@ public class InputHandler : MonoBehaviour {
 			controller.MovePlayerRight();
 			field.text = "";
 		}
+		else if (value == "left")
+		{
+			controller.MovePlayerLeft();
+			field.text = "";
+		}
 	}
 }

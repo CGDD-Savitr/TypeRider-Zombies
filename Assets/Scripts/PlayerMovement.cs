@@ -18,8 +18,6 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 forwardVector;
     private Vector3 playerPos;
 
-    private int laneNumber = 1;
-
 	void Start ()
 	{
 		rigid = GetComponent<Rigidbody>();
@@ -30,28 +28,26 @@ public class PlayerMovement : MonoBehaviour {
 		rigid.velocity = forwardVector;
         playerPos = new Vector3(0f, 0f, 0f);
 	}
-	
-	void Update () {
+
+	public void MoveLeft()
+	{
+		Move(changeLaneVectorLeft);
+	}
+
+	public void MoveRight()
+	{
+		Move(changeLaneVectorRight);
+	}
+
+	public bool CanMove { get { return !moving; } }
+
+	void Move(Vector3 changeLaneVector)
+	{
 		if (!moving)
 		{
-			if (Input.GetKey(KeyCode.A))
-			{
-				if (laneNumber > 0)
-				{
-					rigid.velocity = changeLaneVectorLeft;
-					moving = true;
-					Invoke("StopMoving", timeToChangeLane);
-				}
-			}
-			else if (Input.GetKey(KeyCode.D))
-			{
-				if (laneNumber < 2)
-				{
-					rigid.velocity = changeLaneVectorRight;
-					moving = true;
-					Invoke("StopMoving", timeToChangeLane);
-				}
-			}
+			rigid.velocity = changeLaneVector;
+			moving = true;
+			Invoke("StopMoving", timeToChangeLane);
 		}
 	}
 
@@ -62,21 +58,5 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = playerPos;
 		moving = false;
 		rigid.velocity = forwardVector;
-	}
-
-	void OnTriggerEnter(Collider other)
-	{
-		switch (other.tag)
-		{
-			case "LeftLane":
-				laneNumber = 0;
-				break;
-			case "MiddleLane":
-				laneNumber = 1;
-				break;
-			case "RightLane":
-				laneNumber = 2;
-				break;
-		}
 	}
 }
