@@ -2,20 +2,36 @@
 using System.Collections.Generic;
 using TypeRider.Assets.Classes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	public GameObject playerObj;
+	public GameObject Player;
+
+	public Text PlayerScore;
 
 	PlayerMovement player;
 
 	WordPool wordPool;
 
+	int playerScore = 0;
+
 	Lane playerLane = Lane.MIDDLE; 
 
 	void Awake()
 	{
-		player = playerObj.GetComponent<PlayerMovement>();
+		player = Player.GetComponent<PlayerMovement>();
 		wordPool = GetComponent<WordPool>();
+	}
+
+	void Update()
+	{
+		AddScore((int)(Mathf.Ceil(Time.deltaTime * 25)));
+	}
+
+	public void AddScore(int score)
+	{
+		playerScore += score;
+		PlayerScore.text = playerScore.ToString();
 	}
 
 	public void MovePlayer(Direction direction)
