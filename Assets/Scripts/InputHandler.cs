@@ -60,21 +60,39 @@ public class InputHandler : MonoBehaviour {
 	{
 		string value = field.text.ToString();
 		if (string.IsNullOrEmpty(value))
+		{
+			clearHighlights();
 			return;
-		bool match = false;
+		}
+		if (!highlightSelected(value))
+			field.text = ""; // Clear input if nothing is highlighted
+	}
+
+	void clearHighlights()
+	{
+		foreach (Keyword keyword in keywords)
+		{
+			keyword.Text.text = keyword.Key;
+		}
+	}
+
+	bool highlightSelected(string value)
+	{
+		bool match = false; // No keyword matches input value
 		foreach (Keyword keyword in keywords)
 		{
 			if (keyword.Key.StartsWith(value))
 			{
-				string richText = "<color=" + HighlightColor + "><b>" + value + "</b></color>";
-				Debug.Log(richText);
+				string richText = "<color=" + HighlightColor + "><b>" + value + "</b></color>"; // Add style to matched section
 				if (keyword.Key.Length > value.Length)
 				{
+					// Partial match
 					match = true;
 					richText += keyword.Key.Substring(value.Length);
 				}
 				else
 				{
+					// Full match
 					controller.MovePlayer(keyword.Value);
 					keyword.Key = controller.NextWord(keyword.Key);
 					richText = keyword.Key;
@@ -86,7 +104,6 @@ public class InputHandler : MonoBehaviour {
 				keyword.Text.text = keyword.Key;
 			}
 		}
-		if (!match)
-			field.text = "";
+		return match;
 	}
 }

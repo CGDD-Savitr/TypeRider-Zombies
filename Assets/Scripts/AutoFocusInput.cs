@@ -30,6 +30,7 @@ public class AutoFocusInput : MonoBehaviour {
 			Debug.Log("PlayerInput selected");
 			inputField.Select();
 			inputField.ActivateInputField();
+			inputField.text = "";
 		}
 	}
 }
