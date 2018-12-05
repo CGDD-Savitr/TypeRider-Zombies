@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnObstacles : MonoBehaviour {
+public class SpawnObstacles : MonoBehaviour
+{
 
-	public Transform obstacleParent;
-	public GameObject tablePrefab;
-	public GameObject zombiePrefab;
-	public float floorLength = 40f;
-	public int numberOfObstacles = 40;
+    public Transform obstacleParent;
+    public GameObject tablePrefab;
+    public GameObject zombiePrefab;
+    public float floorLength = 40f;
+    public int numberOfObstacles = 40;
+    public int spaceBetweenObstacles = 1;
 
-	private Vector3 startOfFloor;
+    bool left = false;
+    bool right = false;
+    bool middle = false;
+
+    private Vector3 startOfFloor;
     private bool[,] placedObstacles;
 
     private void Start()
@@ -19,19 +25,143 @@ public class SpawnObstacles : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other)
-	{
-		switch (other.tag)
-		{
-			case "FloorTrigger":
-				startOfFloor = other.transform.position;
+    {
+        switch (other.tag)
+        {
+            case "FloorTrigger":
+                startOfFloor = other.transform.position;
                 startOfFloor.x -= 1;
-				SpawnObjects();
-				break;
-		}
-	}
+                //SpawnObjects();
+                SpawnObjectsConsistent();
 
-	void SpawnObjects()
-	{
+                break;
+        }
+    }
+
+    void SpawnObjectsConsistent()
+    {
+
+        for (int i = spaceBetweenObstacles; i < floorLength; i += spaceBetweenObstacles)
+        {
+            int randomManyObstacles = (int)(Random.Range(1f, 2.99f));
+            int spawningObstaclesAt = (int)(Random.Range(0f, 2.99f));
+            //Debug.Log("spawning " + randomManyObstacles + " and starting at " + spawningObstaclesAt);
+            for (int j = 0; j < 3; j++)
+            {
+                switch (spawningObstaclesAt)
+                {
+                    case 0:
+                        if (left == false)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                left = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+                        }
+                        else if (j == 2)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                left = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+                        }
+                        else
+                        {
+                            left = false;
+                        }
+                        spawningObstaclesAt++;
+                        break;
+                    case 1:
+                        if (middle == false)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                middle = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+
+                        }
+                        else if (j == 2)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                middle = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+                        }
+                        else
+                        {
+                            middle = false;
+                        }
+                        spawningObstaclesAt++;
+                        break;
+                    case 2:
+                        if (right == false)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                right = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+                        }
+                        else if (j == 2)
+                        {
+                            if (randomManyObstacles > 0)
+                            {
+                                right = true;
+                                randomManyObstacles--;
+                                InstantiateSomething(spawningObstaclesAt, i);
+                            }
+                        }
+                        else
+                        {
+                            right = false;
+                        }
+                        spawningObstaclesAt = 0;
+                        break;
+                    default:
+                        Debug.Log("not 0, 1 or 2");
+                        break;
+                }
+            }
+            if (randomManyObstacles > 0)
+            {
+                Debug.Log("missing " + randomManyObstacles);
+            }
+
+        }
+
+    }
+
+    void InstantiateSomething(float xLocation, float yLocation)
+    {
+        Debug.Log("spawning at " + xLocation + ", " + yLocation);
+        if (Random.Range(0f, 1f) < 0.2f)
+        {
+            Instantiate(zombiePrefab,
+                    new Vector3(startOfFloor.x + xLocation, -0.5f, startOfFloor.z + yLocation),
+                    zombiePrefab.transform.localRotation,
+                    obstacleParent);
+        }
+        else
+        {
+            Instantiate(tablePrefab,
+                    new Vector3(startOfFloor.x + xLocation, -0.5f, startOfFloor.z + yLocation),
+                    tablePrefab.transform.localRotation,
+                    obstacleParent);
+        }
+    }
+
+    void SpawnObjects()
+    {
+
         // setting all values to false
         for (int i = 0; i < 3; i++)
         {
@@ -47,30 +177,30 @@ public class SpawnObstacles : MonoBehaviour {
             int randx = (int)(Random.Range(0f, 2.99f));
             int randy = (int)(Random.Range(3f, floorLength - 0.01f));
             // to prevent 2 objects being added on the same square
-            if (placedObstacles[randx,randy] == false)
+            if (placedObstacles[randx, randy] == false)
             {
                 placedObstacles[randx, randy] = true;
-				
-				//20% chance of zombie, 80% chance of table
-				if (Random.Range(0f, 1f) < 0.2f)
-				{
-					Instantiate(zombiePrefab,
-							new Vector3(startOfFloor.x + randx, -0.5f, startOfFloor.z + randy),
-							zombiePrefab.transform.localRotation,
-							obstacleParent);
-				}
-				else
-				{
-					Instantiate(tablePrefab,
-							new Vector3(startOfFloor.x + randx, -0.5f, startOfFloor.z + randy),
-							tablePrefab.transform.localRotation,
-							obstacleParent);
-				}
-				
+
+                //20% chance of zombie, 80% chance of table
+                if (Random.Range(0f, 1f) < 0.2f)
+                {
+                    Instantiate(zombiePrefab,
+                            new Vector3(startOfFloor.x + randx, -0.5f, startOfFloor.z + randy),
+                            zombiePrefab.transform.localRotation,
+                            obstacleParent);
+                }
+                else
+                {
+                    Instantiate(tablePrefab,
+                            new Vector3(startOfFloor.x + randx, -0.5f, startOfFloor.z + randy),
+                            tablePrefab.transform.localRotation,
+                            obstacleParent);
+                }
+
             }
-            
+
         }
-	}
+    }
 
     void clearPath()
     {
@@ -79,7 +209,7 @@ public class SpawnObstacles : MonoBehaviour {
         for (int i = 0; i < floorLength; i++)
         {
             placedObstacles[lane, i] = true;
-            if (i%2 == 0)
+            if (i % 2 == 0)
             {
                 // 50-50 chance that he takes action
                 if ((int)(Random.Range(0f, 1.99f)) == 1)
