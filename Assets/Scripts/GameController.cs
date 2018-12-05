@@ -8,11 +8,14 @@ public class GameController : MonoBehaviour {
 
 	PlayerMovement player;
 
+	WordPool wordPool;
+
 	Lane playerLane = Lane.MIDDLE; 
 
 	void Awake()
 	{
 		player = playerObj.GetComponent<PlayerMovement>();
+		wordPool = GetComponent<WordPool>();
 	}
 
 	public void MovePlayer(Direction direction)
@@ -28,6 +31,13 @@ public class GameController : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+
+	public string NextWord(string old)
+	{
+		string word = wordPool.GetWord();
+		wordPool.ReturnWord(old);
+		return word;
 	}
 
 	public void MovePlayerLeft() 

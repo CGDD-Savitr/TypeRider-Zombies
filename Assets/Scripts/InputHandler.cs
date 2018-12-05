@@ -76,7 +76,7 @@ public class InputHandler : MonoBehaviour {
 				else
 				{
 					controller.MovePlayer(keyword.Value);
-					keyword.Key = "next";
+					keyword.Key = controller.NextWord(keyword.Key);
 					richText = keyword.Key;
 				}
 				keyword.Text.text = richText;
