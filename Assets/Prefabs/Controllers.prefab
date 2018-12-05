@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4905744152265828}
   - component: {fileID: 114482559246741912}
   - component: {fileID: 114076516150926628}
+  - component: {fileID: 114282090986084876}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -81,6 +82,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e391943ac476eed41980a588bf5e3f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftKeyword: {fileID: 0}
+  RightKeyword: {fileID: 0}
+  UpKeyword: {fileID: 0}
+  DownKeyword: {fileID: 0}
+  HighlightColor: green
+--- !u!114 &114282090986084876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144704094783174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421a56d2941fbba4bbb4b6724b4e363a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  File: med
 --- !u!114 &114482559246741912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,4 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c09a44a12541ba4bbc0db3c2ba140e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerScore: {fileID: 0}
