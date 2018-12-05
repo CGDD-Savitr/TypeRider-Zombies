@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TypeRider.Assets.Classes;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -12,6 +13,21 @@ public class GameController : MonoBehaviour {
 	void Awake()
 	{
 		player = playerObj.GetComponent<PlayerMovement>();
+	}
+
+	public void MovePlayer(Direction direction)
+	{
+		switch (direction)
+		{
+			case Direction.LEFT:
+				MovePlayerLeft();
+				break;
+			case Direction.RIGHT:
+				MovePlayerRight();
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void MovePlayerLeft() 
