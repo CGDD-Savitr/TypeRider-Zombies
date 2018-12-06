@@ -7,7 +7,11 @@ public class PlayerMovement : MonoBehaviour {
 	public float initialForwardVelocity = 0.5f;
 	public float laneChangeVelocity = 2f;
 
+	[HideInInspector]
+	public float currentSpeed;
+
 	private float timeToChangeLane;
+	private float currentDifficulty;
 
 	private bool moving = false;
 
@@ -21,12 +25,22 @@ public class PlayerMovement : MonoBehaviour {
 	void Start ()
 	{
 		rigid = GetComponent<Rigidbody>();
+		currentDifficulty = DifficultySetting.Difficulty;
 		timeToChangeLane = 1 / laneChangeVelocity;
-		forwardVector = new Vector3(0f, 0f, initialForwardVelocity);
-		changeLaneVectorLeft = new Vector3(-laneChangeVelocity, 0f, initialForwardVelocity);
-		changeLaneVectorRight = new Vector3(laneChangeVelocity, 0f, initialForwardVelocity);
+		forwardVector = new Vector3(0f, 0f, initialForwardVelocity * currentDifficulty);
+		changeLaneVectorLeft = new Vector3(-laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);
+		changeLaneVectorRight = new Vector3(laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);
 		rigid.velocity = forwardVector;
         playerPos = new Vector3(0f, 0f, 0f);
+		currentSpeed = forwardVector.z;
+	}
+
+	private void Update()
+	{
+		forwardVector.z += currentDifficulty * Time.deltaTime * 0.01f;
+		changeLaneVectorLeft.z += currentDifficulty * Time.deltaTime * 0.01f;
+		changeLaneVectorRight.z += currentDifficulty * Time.deltaTime * 0.01f;
+		currentSpeed = forwardVector.z;
 	}
 
 	public void MoveLeft()
