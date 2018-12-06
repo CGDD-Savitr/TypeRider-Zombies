@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cda7367a59aa6469c3161308e304fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: Daniel
+  gameSceneName: main
   mainMenuSceneName: Main Menu
 --- !u!4 &1258099180
 Transform:
