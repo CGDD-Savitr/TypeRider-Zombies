@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using TypeRider.Assets.Classes;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameController : MonoBehaviour {
 	public GameObject Player;
+	public GameObject SceneManagerObject;
 
 	public Text PlayerScore;
+	public Text PlayerHP;
+
+	public int playerHP = 5;
 
 	PlayerMovement player;
 
@@ -15,7 +22,10 @@ public class GameController : MonoBehaviour {
 
 	int playerScore = 0;
 
-	Lane playerLane = Lane.MIDDLE; 
+	bool lost = false;
+	bool paused = false;
+
+	Lane playerLane = Lane.MIDDLE;
 
 	void Awake()
 	{
@@ -23,9 +33,77 @@ public class GameController : MonoBehaviour {
 		wordPool = GetComponent<WordPool>();
 	}
 
+	void Start()
+	{
+		Time.timeScale = 1.0f;
+		PlayerHP.text = playerHP.ToString();
+	}
+
 	void Update()
 	{
-		AddScore((int)(Mathf.Ceil(Time.deltaTime * 25)));
+		if (!lost)
+		{
+			AddScore((int)(Mathf.Ceil(Time.deltaTime * 25)));
+		}
+	}
+
+	public void TogglePause()
+	{
+		if (!paused)
+		{
+			Time.timeScale = 0.0f;
+			SceneManagerObject.SendMessage("Pause");
+		}
+		else
+		{
+			Time.timeScale = 1.0f;
+			SceneManagerObject.SendMessage("Unpause");
+		}
+
+		paused = !paused;
+	}
+
+	public void TakeDamage()
+	{
+		playerHP--;
+		PlayerHP.text = playerHP.ToString();
+
+		if (playerHP <= 0)
+		{
+			Lose();
+		}
+	}
+
+	void Lose()
+	{
+		lost = true;
+		SaveHighScore();
+		SceneManagerObject.SendMessage("GameOver");
+	}
+
+	void SaveHighScore()
+	{
+		List<int> scores = new List<int>();
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+		HighScores data = new HighScores();
+
+		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScores.dat"))
+		{
+			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.Open);
+			data = (HighScores)bf.Deserialize(file);
+			file.Close();
+
+			scores = data.scores;
+		}
+
+		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.OpenOrCreate);
+
+		scores.Add(playerScore);
+		data.scores = scores;
+
+		bf.Serialize(file, data);
+		file.Close();
 	}
 
 	public void AddScore(int score)

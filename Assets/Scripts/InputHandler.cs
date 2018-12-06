@@ -56,6 +56,14 @@ public class InputHandler : MonoBehaviour {
 		};
 	}
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			controller.TogglePause();
+		}
+	}
+
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString();

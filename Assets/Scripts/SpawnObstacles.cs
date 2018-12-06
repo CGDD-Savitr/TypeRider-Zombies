@@ -6,7 +6,7 @@ public class SpawnObstacles : MonoBehaviour
 {
 
     public Transform obstacleParent;
-    public GameObject tablePrefab;
+    public GameObject tableSidePrefab;
     public GameObject zombiePrefab;
     public float floorLength = 40f;
     public int numberOfObstacles = 40;
@@ -45,7 +45,7 @@ public class SpawnObstacles : MonoBehaviour
         {
             int randomManyObstacles = (int)(Random.Range(1f, 2.99f));
             int spawningObstaclesAt = (int)(Random.Range(0f, 2.99f));
-            //Debug.Log("spawning " + randomManyObstacles + " and starting at " + spawningObstaclesAt);
+
             for (int j = 0; j < 3; j++)
             {
                 switch (spawningObstaclesAt)
@@ -127,13 +127,8 @@ public class SpawnObstacles : MonoBehaviour
                         spawningObstaclesAt = 0;
                         break;
                     default:
-                        Debug.Log("not 0, 1 or 2");
                         break;
                 }
-            }
-            if (randomManyObstacles > 0)
-            {
-                Debug.Log("missing " + randomManyObstacles);
             }
 
         }
@@ -142,7 +137,6 @@ public class SpawnObstacles : MonoBehaviour
 
     void InstantiateSomething(float xLocation, float yLocation)
     {
-        Debug.Log("spawning at " + xLocation + ", " + yLocation);
         if (Random.Range(0f, 1f) < 0.2f)
         {
             Instantiate(zombiePrefab,
@@ -152,9 +146,9 @@ public class SpawnObstacles : MonoBehaviour
         }
         else
         {
-            Instantiate(tablePrefab,
-                    new Vector3(startOfFloor.x + xLocation, -0.5f, startOfFloor.z + yLocation),
-                    tablePrefab.transform.localRotation,
+            Instantiate(tableSidePrefab,
+                    new Vector3(startOfFloor.x + xLocation, 0f, startOfFloor.z + yLocation + 0.5f),
+                    tableSidePrefab.transform.localRotation,
                     obstacleParent);
         }
     }
@@ -191,9 +185,9 @@ public class SpawnObstacles : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(tablePrefab,
+                    Instantiate(tableSidePrefab,
                             new Vector3(startOfFloor.x + randx, -0.5f, startOfFloor.z + randy),
-                            tablePrefab.transform.localRotation,
+                            tableSidePrefab.transform.localRotation,
                             obstacleParent);
                 }
 
