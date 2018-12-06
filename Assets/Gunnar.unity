@@ -215,6 +215,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8a69f20a5f8d148a69cd0e32bcef2e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &482930976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114941362032305218, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 2026664632}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &658269406
 Prefab:
   m_ObjectHideFlags: 0
@@ -504,12 +510,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c56060f95d2c9468e297dd78032910, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &1793080701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114935241335206600, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 2026664632}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1826639212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1445189748744602, guid: 57c56060f95d2c9468e297dd78032910,
@@ -749,7 +749,7 @@ Prefab:
         type: 2}
       propertyPath: PlayerHP
       value: 
-      objectReference: {fileID: 1793080701}
+      objectReference: {fileID: 482930976}
     - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
       propertyPath: LeftKeyword

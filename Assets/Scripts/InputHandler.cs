@@ -16,13 +16,18 @@ public class InputHandler : MonoBehaviour {
 
 	public string HighlightColor = "green";
 
+	public GameObject Controls;
+
 	GameController controller;
 
 	Keyword[] keywords;
 
+	Animator animator;
+
 	void Awake()
 	{
 		controller = FindObjectOfType<GameController>();
+		animator = Controls.GetComponent<Animator>();
 	}
 
 	void Start()
@@ -86,11 +91,13 @@ public class InputHandler : MonoBehaviour {
 
 	bool highlightSelected(string value)
 	{
-		bool match = false; // No keyword matches input value
+		bool valid = false; // No keyword matches input value
+		bool match = false; // Partial match
 		foreach (Keyword keyword in keywords)
 		{
 			if (keyword.Key.StartsWith(value))
 			{
+				valid = true;
 				string richText = "<color=" + HighlightColor + "><b>" + value + "</b></color>"; // Add style to matched section
 				if (keyword.Key.Length > value.Length)
 				{
@@ -112,6 +119,8 @@ public class InputHandler : MonoBehaviour {
 				keyword.Text.text = keyword.Key;
 			}
 		}
+		if (!valid && animator)
+			animator.Play("uiError", -1, 0f);
 		return match;
 	}
 }
