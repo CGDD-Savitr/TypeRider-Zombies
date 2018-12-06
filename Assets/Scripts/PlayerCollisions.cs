@@ -9,10 +9,12 @@ public class PlayerCollisions : MonoBehaviour
 	public GameObject DamageOverlay;
 
 	Animator anim;
+	AudioSource audio;
 
 	private void Start()
 	{
 		anim = DamageOverlay.GetComponent<Animator>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -25,6 +27,10 @@ public class PlayerCollisions : MonoBehaviour
 				if (anim)
 				{
 					anim.SetTrigger("TakeDamage");
+				}
+				if (audio)
+				{
+					audio.Play();
 				}
 			}
 		}
