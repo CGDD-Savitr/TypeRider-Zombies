@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 	WordPool wordPool;
 
 	int playerScore = 0;
+	float currentDifficulty = 1f;
 
 	bool lost = false;
 	bool paused = false;
@@ -37,13 +38,14 @@ public class GameController : MonoBehaviour {
 	{
 		Time.timeScale = 1.0f;
 		PlayerHP.text = playerHP.ToString();
+		currentDifficulty = DifficultySetting.Difficulty;
 	}
 
 	void Update()
 	{
 		if (!lost)
 		{
-			AddScore((int)(Mathf.Ceil(Time.deltaTime * 25)));
+			AddScore((int)((Mathf.Ceil(Time.deltaTime * 25)) * currentDifficulty * player.currentSpeed));
 		}
 	}
 
