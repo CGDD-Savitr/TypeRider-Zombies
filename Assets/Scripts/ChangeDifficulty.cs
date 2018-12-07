@@ -12,7 +12,7 @@ public class ChangeDifficulty : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DifficultySetting.Difficulty = normalDifficulty;
-		text.text = "Normal";
+		text.text = "NORMAL";
 	}
 
 	public void NextDifficulty()
@@ -20,12 +20,12 @@ public class ChangeDifficulty : MonoBehaviour {
 		if (DifficultySetting.Difficulty == normalDifficulty)
 		{
 			DifficultySetting.Difficulty = hardDifficulty;
-			text.text = "Hard";
+			text.text = "HARD";
 		}
 		else
 		{
 			DifficultySetting.Difficulty = normalDifficulty;
-			text.text = "Normal";
+			text.text = "NORMAL";
 		}
 	}
 }

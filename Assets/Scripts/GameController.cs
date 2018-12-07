@@ -80,6 +80,7 @@ public class GameController : MonoBehaviour {
 	{
 		lost = true;
 		SaveHighScore();
+		CrossSceneRegistry.PlayerScore = playerScore;
 		SceneManagerObject.SendMessage("GameOver");
 	}
 
