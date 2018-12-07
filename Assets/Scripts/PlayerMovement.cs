@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TypeRider.Assets.Classes;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start ()
 	{
 		rigid = GetComponent<Rigidbody>();
-		currentDifficulty = DifficultySetting.Difficulty;
+		currentDifficulty = CrossSceneRegistry.Difficulty;
 		timeToChangeLane = 1 / laneChangeVelocity;
 		forwardVector = new Vector3(0f, 0f, initialForwardVelocity * currentDifficulty);
 		changeLaneVectorLeft = new Vector3(-laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);

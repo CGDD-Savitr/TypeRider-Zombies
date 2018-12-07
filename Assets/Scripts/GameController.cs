@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour {
 	{
 		Time.timeScale = 1.0f;
 		PlayerHP.text = playerHP.ToString();
-		currentDifficulty = DifficultySetting.Difficulty;
+		currentDifficulty = CrossSceneRegistry.Difficulty;
 	}
 
 	void Update()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TypeRider.Assets.Classes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,20 +12,20 @@ public class ChangeDifficulty : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DifficultySetting.Difficulty = normalDifficulty;
+		CrossSceneRegistry.Difficulty = normalDifficulty;
 		text.text = "NORMAL";
 	}
 
 	public void NextDifficulty()
 	{
-		if (DifficultySetting.Difficulty == normalDifficulty)
+		if (CrossSceneRegistry.Difficulty == normalDifficulty)
 		{
-			DifficultySetting.Difficulty = hardDifficulty;
+			CrossSceneRegistry.Difficulty = hardDifficulty;
 			text.text = "HARD";
 		}
 		else
 		{
-			DifficultySetting.Difficulty = normalDifficulty;
+			CrossSceneRegistry.Difficulty = normalDifficulty;
 			text.text = "NORMAL";
 		}
 	}
