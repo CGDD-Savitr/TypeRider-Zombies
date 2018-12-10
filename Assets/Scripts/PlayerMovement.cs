@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Vector3 changeLaneVectorLeft;
 	private Vector3 changeLaneVectorRight;
+	private Vector3 changeLaneVectorUp;
+	private Vector3 changeLaneVectorDown;
 	private Vector3 forwardVector;
     private Vector3 playerPos;
 
@@ -31,6 +33,8 @@ public class PlayerMovement : MonoBehaviour {
 		forwardVector = new Vector3(0f, 0f, initialForwardVelocity * currentDifficulty);
 		changeLaneVectorLeft = new Vector3(-laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);
 		changeLaneVectorRight = new Vector3(laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);
+		changeLaneVectorUp = new Vector3(0f, laneChangeVelocity, initialForwardVelocity * currentDifficulty);
+		changeLaneVectorDown = new Vector3(0f, -laneChangeVelocity, initialForwardVelocity * currentDifficulty);
 		rigid.velocity = forwardVector;
         playerPos = new Vector3(0f, 0f, 0f);
 		currentSpeed = forwardVector.z;
@@ -41,6 +45,8 @@ public class PlayerMovement : MonoBehaviour {
 		forwardVector.z += currentDifficulty * Time.deltaTime * 0.01f;
 		changeLaneVectorLeft.z += currentDifficulty * Time.deltaTime * 0.01f;
 		changeLaneVectorRight.z += currentDifficulty * Time.deltaTime * 0.01f;
+		changeLaneVectorUp.z += currentDifficulty * Time.deltaTime * 0.01f;
+		changeLaneVectorDown.z += currentDifficulty * Time.deltaTime * 0.01f;
 		currentSpeed = forwardVector.z;
 	}
 
@@ -52,6 +58,16 @@ public class PlayerMovement : MonoBehaviour {
 	public void MoveRight()
 	{
 		Move(changeLaneVectorRight);
+	}
+
+	public void MoveUp()
+	{
+		Move(changeLaneVectorUp);
+	}
+
+	public void MoveDown()
+	{
+		Move(changeLaneVectorDown);
 	}
 
 	public bool CanMove { get { return !moving; } }
@@ -70,7 +86,8 @@ public class PlayerMovement : MonoBehaviour {
 	{
         playerPos = transform.position;
         playerPos.x = Mathf.Round(playerPos.x);
-        transform.position = playerPos;
+		playerPos.y = Mathf.Round(playerPos.y);
+		transform.position = playerPos;
 		moving = false;
 		rigid.velocity = forwardVector;
 	}

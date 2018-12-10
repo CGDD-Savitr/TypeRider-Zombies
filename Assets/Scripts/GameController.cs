@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 
 	bool paused = false;
 
-	Lane playerLane = Lane.MIDDLE;
+	Lane playerLane = Lane.BOTTOM_MIDDLE;
 
 	int wordLength = 5;
 
@@ -110,6 +110,12 @@ public class GameController : MonoBehaviour {
 			case Direction.RIGHT:
 				MovePlayerRight();
 				break;
+			case Direction.UP:
+				MovePlayerUp();
+				break;
+			case Direction.DOWN:
+				MovePlayerDown();
+				break;
 			default:
 				break;
 		}
@@ -130,7 +136,7 @@ public class GameController : MonoBehaviour {
 
 	public void MovePlayerLeft() 
 	{
-		if (player.CanMove && playerLane > Lane.LEFT)
+		if (player.CanMove && (playerLane != Lane.BOTTOM_LEFT) && (playerLane != Lane.TOP_LEFT))
 		{
 			player.MoveLeft();
 			playerLane--;
@@ -139,7 +145,7 @@ public class GameController : MonoBehaviour {
 
 	public void MovePlayerRight()
 	{
-		if (player.CanMove && playerLane < Lane.RIGHT)
+		if (player.CanMove && (playerLane != Lane.BOTTOM_RIGHT) && (playerLane != Lane.TOP_RIGHT))
 		{
 			player.MoveRight();
 			playerLane++;
@@ -148,12 +154,20 @@ public class GameController : MonoBehaviour {
 
 	public void MovePlayerUp()
 	{
-		Debug.Log("Move up");
+		if (player.CanMove && (playerLane < Lane.TOP_LEFT))
+		{
+			player.MoveUp();
+			playerLane += 3;
+		}
 	}
 
 	public void MovePlayerDown()
 	{
-		Debug.Log("Move down");
+		if (player.CanMove && (playerLane >= Lane.TOP_LEFT))
+		{
+			player.MoveDown();
+			playerLane -= 3;
+		}
 	}
 
 	void SaveHighScore()
@@ -182,8 +196,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	enum Lane {
-		LEFT = 0,
-		MIDDLE = 1,
-		RIGHT = 2
+		BOTTOM_LEFT = 0,
+		BOTTOM_MIDDLE = 1,
+		BOTTOM_RIGHT = 2,
+		TOP_LEFT = 3,
+		TOP_MIDDLE = 4,
+		TOP_RIGHT = 5
 	};
 }

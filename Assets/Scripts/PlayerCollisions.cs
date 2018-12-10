@@ -21,7 +21,7 @@ public class PlayerCollisions : MonoBehaviour
 	{
 		if (GameManager)
 		{
-			if (other.gameObject.tag != "Table")
+			if (other.gameObject.tag != "Table" && other.gameObject.tag != "FloorTrigger")
 			{
 				GameManager.SendMessage("TakeDamage");
 				if (anim)
