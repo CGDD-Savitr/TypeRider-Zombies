@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
 
 	public int playerHP = 5;
 
+	public int ScoreThreshold = 10000;
+
 	PlayerMovement player;
 
 	WordPool wordPool;
@@ -116,6 +118,11 @@ public class GameController : MonoBehaviour {
 	{
 		playerScore += score;
 		PlayerScore.text = playerScore.ToString();
+		if (wordLength < wordPool.LongestWordLength && playerScore > ScoreThreshold)
+		{
+			ScoreThreshold *= 2;
+			wordLength++;
+		}
 	}
 
 	public void MovePlayer(Direction direction)

@@ -33,7 +33,8 @@ public class WordPool : MonoBehaviour {
 	public string GetWord(int length)
 	{
 		List<string> words = null;
-		if (wordBuckets.TryGetValue(length, out words) && words.Count > 0)
+		int len = Mathf.Min(length, LongestWordLength);
+		if (wordBuckets.TryGetValue(len, out words) && words.Count > 0)
 		{
 			int index = (int) Random.Range(0, words.Count - 1);
 			string word = words[index];
@@ -41,8 +42,8 @@ public class WordPool : MonoBehaviour {
 			wordBuckets[word.Length] = words;
 			return word;
 		}
-		if (length > 0)
-			return GetWord(length - 1);
+		if (len > 0)
+			return GetWord(len - 1);
 		return DefaultWord; // Should ideally never be reached
 	}
 
