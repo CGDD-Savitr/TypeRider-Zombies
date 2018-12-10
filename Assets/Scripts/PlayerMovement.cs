@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start ()
 	{
 		rigid = GetComponent<Rigidbody>();
-		currentDifficulty = CrossSceneRegistry.Difficulty;
+		currentDifficulty = CrossSceneRegistry.Difficulty.InitialVelocity;
 		timeToChangeLane = 1 / laneChangeVelocity;
 		forwardVector = new Vector3(0f, 0f, initialForwardVelocity * currentDifficulty);
 		changeLaneVectorLeft = new Vector3(-laneChangeVelocity, 0f, initialForwardVelocity * currentDifficulty);

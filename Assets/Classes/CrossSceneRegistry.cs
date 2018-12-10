@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using TypeRider.Assets.Interfaces;
 
 namespace TypeRider.Assets.Classes
 {
     public static class CrossSceneRegistry
     {
-        public static float Difficulty
+        public static IDifficulty Difficulty
         {
             get
             {
@@ -40,7 +41,7 @@ namespace TypeRider.Assets.Classes
             } 
         }
 
-        private static float difficulty = 1f;
+        private static IDifficulty difficulty = new NormalDifficulty();
 
         private static int playerScore = 0;
 

@@ -257,125 +257,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8a69f20a5f8d148a69cd0e32bcef2e, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &565564497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 565564498}
-  - component: {fileID: 565564499}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &565564498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 565564497}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1150675111}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &565564499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 565564497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c17050014c730c4faa8dc42dfea5cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerScoreText: {fileID: 1527020053}
-  Threshold: 10000
-  Base: 10
-  Player: {fileID: 1860415615}
---- !u!1 &584299081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 584299082}
-  - component: {fileID: 584299084}
-  - component: {fileID: 584299083}
-  m_Layer: 5
-  m_Name: MilestoneGoal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &584299082
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584299081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1725774613}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -152}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &584299083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584299081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: You are currently the top scorer!
---- !u!222 &584299084
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 584299081}
-  m_CullTransparentMesh: 0
 --- !u!114 &683524344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114858717394318336, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
@@ -638,11 +519,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43b5d29225aa13143a01b7c5d31f7803, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &1150675111 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4390986706773442, guid: 8198f4b712433af41872304543c83c17,
-    type: 2}
-  m_PrefabInternal: {fileID: 2061152987}
 --- !u!1 &1245892091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1654854946698154, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
@@ -654,11 +530,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2026664632}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!224 &1725774613 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224811423760078302, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 2026664632}
 --- !u!1 &1739539054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1144704094783174, guid: 8198f4b712433af41872304543c83c17,
@@ -848,64 +719,15 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 108577000}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224806614109515432, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224815083903304216, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224180393725257568, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224330694486238566, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550247131783530, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224180393725257568, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 150
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 801ba7c4d5291074481f7e2f8fcf33c4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2026664633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114639976238186492, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 2026664632}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2061152987
 Prefab:
   m_ObjectHideFlags: 0
@@ -952,9 +774,14 @@ Prefab:
       objectReference: {fileID: 1860415613}
     - target: {fileID: 114482559246741912, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
-      propertyPath: PlayerScore
+      propertyPath: PlayerHP
       value: 
-      objectReference: {fileID: 1527020053}
+      objectReference: {fileID: 2137454077}
+    - target: {fileID: 114482559246741912, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: MilestoneText
+      value: 
+      objectReference: {fileID: 2026664633}
     - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
       propertyPath: LeftKeyword
@@ -975,26 +802,26 @@ Prefab:
       propertyPath: DownKeyword
       value: 
       objectReference: {fileID: 683524344}
-    - target: {fileID: 114482559246741912, guid: 8198f4b712433af41872304543c83c17,
-        type: 2}
-      propertyPath: PlayerHP
-      value: 
-      objectReference: {fileID: 2137454077}
     - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
       propertyPath: Controls
       value: 
       objectReference: {fileID: 1245892091}
+    - target: {fileID: 114285187810945774, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: PlayerScoreText
+      value: 
+      objectReference: {fileID: 1527020053}
+    - target: {fileID: 114285187810945774, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1860415615}
     - target: {fileID: 114482559246741912, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
       propertyPath: playerHP
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114482559246741912, guid: 8198f4b712433af41872304543c83c17,
-        type: 2}
-      propertyPath: MilestoneText
-      value: 
-      objectReference: {fileID: 584299083}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8198f4b712433af41872304543c83c17, type: 2}
   m_IsPrefabAsset: 0

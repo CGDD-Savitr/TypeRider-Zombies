@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TypeRider.Assets.Classes;
 using UnityEngine;
 
 public class WordPool : MonoBehaviour {
 
-	public string File = "small";
-
-	public string DefaultWord = "Savitr";
+	public string DefaultWord = "savitr";
 
 	public int ShortestWordLength { get; private set; }
 
@@ -17,7 +16,7 @@ public class WordPool : MonoBehaviour {
 
 	void Awake()
 	{
-		TextAsset textAsset = Resources.Load<TextAsset>("WordBanks/" + File);
+		TextAsset textAsset = Resources.Load<TextAsset>("WordBanks/" + CrossSceneRegistry.Difficulty.File);
 		wordBuckets = new Dictionary<int, List<string>>();
 		List<string> words = new List<string>(textAsset.text.Split(','));
 		words.ForEach(word => 

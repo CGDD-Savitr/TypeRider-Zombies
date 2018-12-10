@@ -1,32 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TypeRider.Assets.Classes;
+using TypeRider.Assets.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeDifficulty : MonoBehaviour {
 
 	public Text text;
-	public float normalDifficulty = 1f;
-	public float hardDifficulty = 1.5f;
 
-	// Use this for initialization
-	void Start () {
-		CrossSceneRegistry.Difficulty = normalDifficulty;
-		text.text = "NORMAL";
+	int selected = 1;
+
+	IDifficulty[] difficulties = new IDifficulty[]
+	{
+		new EasyDifficulty(),
+		new NormalDifficulty(),
+		new HardDifficulty()
+	};
+
+	void Start () 
+	{
+		select(selected);
 	}
-
+	
+	void select(int index)
+	{
+		CrossSceneRegistry.Difficulty = difficulties[index];
+		text.text = CrossSceneRegistry.Difficulty.Name;
+	}
 	public void NextDifficulty()
 	{
-		if (CrossSceneRegistry.Difficulty == normalDifficulty)
-		{
-			CrossSceneRegistry.Difficulty = hardDifficulty;
-			text.text = "HARD";
-		}
-		else
-		{
-			CrossSceneRegistry.Difficulty = normalDifficulty;
-			text.text = "NORMAL";
-		}
+		select(++selected % difficulties.Length);
 	}
 }

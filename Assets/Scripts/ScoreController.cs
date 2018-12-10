@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class ScoreController : MonoBehaviour {
 	public Text PlayerScoreText;
 
-	public int Threshold = 10000;
-
 	public int Base = 10;
 
 	public PlayerMovement Player;
@@ -17,6 +15,8 @@ public class ScoreController : MonoBehaviour {
 
 	int playerScore = 0;
 
+	int threshold = 0;
+
 	void Awake()
 	{
 		gameController = FindObjectOfType<GameController>();
@@ -24,6 +24,7 @@ public class ScoreController : MonoBehaviour {
 
 	void Start()
 	{
+		threshold = CrossSceneRegistry.Difficulty.ScoreThreshold;
 		StartCoroutine(ScoreUpdater());
 	}
 
@@ -31,7 +32,7 @@ public class ScoreController : MonoBehaviour {
 	{
 		while (gameController.Running)
 		{
-			AddScore((int) Mathf.Ceil(Player.currentSpeed * CrossSceneRegistry.Difficulty * Base));
+			AddScore((int) Mathf.Ceil(Player.currentSpeed * CrossSceneRegistry.Difficulty.Multiplier * Base));
 			yield return new WaitForSeconds(.1f);
 		}
 	}
@@ -40,10 +41,10 @@ public class ScoreController : MonoBehaviour {
 	{
 		playerScore += score;
 		PlayerScoreText.text = playerScore.ToString();
-		if (playerScore > Threshold)
+		if (playerScore > threshold)
 		{
 			gameController.IncrementWordLength();
-			Threshold *= 2;
+			threshold *= 2;
 		}
 		CrossSceneRegistry.PlayerScore = playerScore;
 	}
