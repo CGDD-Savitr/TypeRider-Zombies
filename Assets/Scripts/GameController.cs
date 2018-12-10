@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour {
 
 	Lane playerLane = Lane.MIDDLE;
 
+	int wordLength = 5;
+
 	void Awake()
 	{
 		player = Player.GetComponent<PlayerMovement>();
@@ -39,6 +41,7 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = 1.0f;
 		PlayerHP.text = playerHP.ToString();
 		currentDifficulty = CrossSceneRegistry.Difficulty;
+		wordLength = wordPool.ShortestWordLength;
 	}
 
 	void Update()
@@ -132,7 +135,7 @@ public class GameController : MonoBehaviour {
 
 	public string NextWord(string old)
 	{
-		string word = wordPool.GetWord();
+		string word = wordPool.GetWord(wordLength);
 		wordPool.ReturnWord(old);
 		return word;
 	}
