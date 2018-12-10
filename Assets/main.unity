@@ -822,6 +822,11 @@ Prefab:
       propertyPath: playerHP
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114282090986084876, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: DefaultWord
+      value: savitr
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8198f4b712433af41872304543c83c17, type: 2}
   m_IsPrefabAsset: 0
