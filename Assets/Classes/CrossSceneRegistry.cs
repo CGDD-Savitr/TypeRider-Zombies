@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TypeRider.Assets.Classes
 {
     public static class CrossSceneRegistry
@@ -26,8 +28,22 @@ namespace TypeRider.Assets.Classes
             } 
         }
 
+        public static List<int> HighScores 
+        { 
+            get
+            {
+                return highScores;
+            } 
+            set
+            {
+                highScores = value;
+            } 
+        }
+
         private static float difficulty = 1f;
 
         private static int playerScore = 0;
+
+        private static List<int> highScores = new List<int>();
     }
 }

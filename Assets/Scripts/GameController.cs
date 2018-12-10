@@ -1,36 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using TypeRider.Assets.Classes;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 
 public class GameController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject SceneManagerObject;
 
-	public Text PlayerScore;
 	public Text PlayerHP;
+
+	public Text MilestoneText;
 
 	public int playerHP = 5;
 
-	public int ScoreThreshold = 10000;
+	public bool Running { get { return !lost; } }
 
 	PlayerMovement player;
 
 	WordPool wordPool;
 
-	int playerScore = 0;
-	float currentDifficulty = 1f;
-
 	bool lost = false;
+
 	bool paused = false;
 
 	Lane playerLane = Lane.MIDDLE;
 
 	int wordLength = 5;
+
+	Stack<int> milestones;
+
+	int currentTarget;
 
 	void Awake()
 	{
@@ -42,15 +44,24 @@ public class GameController : MonoBehaviour {
 	{
 		Time.timeScale = 1.0f;
 		PlayerHP.text = playerHP.ToString();
-		currentDifficulty = CrossSceneRegistry.Difficulty;
 		wordLength = wordPool.ShortestWordLength;
+		milestones = new Stack<int>(CrossSceneRegistry.HighScores);
 	}
 
 	void Update()
 	{
-		if (!lost)
+		int currentScore = CrossSceneRegistry.PlayerScore;
+		if (currentTarget != -1 && currentScore > currentTarget)
 		{
-			AddScore((int)((Mathf.Ceil(Time.deltaTime * 25)) * currentDifficulty * player.currentSpeed));
+			currentTarget = milestones.Count > 0 ? milestones.Pop() : -1;
+			if (currentTarget != -1)
+			{
+				MilestoneText.text = "Next high score is " + currentTarget.ToString();
+			}
+			else
+			{
+				MilestoneText.text = "You are currently the top scorer!";
+			}
 		}
 	}
 
@@ -85,44 +96,8 @@ public class GameController : MonoBehaviour {
 	{
 		lost = true;
 		SaveHighScore();
-		CrossSceneRegistry.PlayerScore = playerScore;
+		// CrossSceneRegistry.PlayerScore = playerScore;
 		SceneManagerObject.SendMessage("GameOver");
-	}
-
-	void SaveHighScore()
-	{
-		List<int> scores = new List<int>();
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file;
-		HighScores data = new HighScores();
-
-		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScores.dat"))
-		{
-			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.Open);
-			data = (HighScores)bf.Deserialize(file);
-			file.Close();
-
-			scores = data.scores;
-		}
-
-		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.OpenOrCreate);
-
-		scores.Add(playerScore);
-		data.scores = scores;
-
-		bf.Serialize(file, data);
-		file.Close();
-	}
-
-	public void AddScore(int score)
-	{
-		playerScore += score;
-		PlayerScore.text = playerScore.ToString();
-		if (wordLength < wordPool.LongestWordLength && playerScore > ScoreThreshold)
-		{
-			ScoreThreshold *= 2;
-			wordLength++;
-		}
 	}
 
 	public void MovePlayer(Direction direction)
@@ -138,6 +113,12 @@ public class GameController : MonoBehaviour {
 			default:
 				break;
 		}
+	}
+
+	public void IncrementWordLength()
+	{
+		if (wordLength < wordPool.LongestWordLength)
+			wordLength++;
 	}
 
 	public string NextWord(string old)
@@ -173,6 +154,31 @@ public class GameController : MonoBehaviour {
 	public void MovePlayerDown()
 	{
 		Debug.Log("Move down");
+	}
+
+	void SaveHighScore()
+	{
+		List<int> scores = new List<int>();
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file;
+		HighScores data = new HighScores();
+
+		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScores.dat"))
+		{
+			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.Open);
+			data = (HighScores)bf.Deserialize(file);
+			file.Close();
+
+			scores = data.scores;
+		}
+
+		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.OpenOrCreate);
+
+		scores.Add(CrossSceneRegistry.PlayerScore);
+		data.scores = scores;
+
+		bf.Serialize(file, data);
+		file.Close();
 	}
 
 	enum Lane {

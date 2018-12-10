@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using TypeRider.Assets.Classes;
 
 public class PrintHighScores : MonoBehaviour {
 
@@ -33,5 +34,7 @@ public class PrintHighScores : MonoBehaviour {
 		{
 			list.text += "\n" + score;
 		}
+
+		CrossSceneRegistry.HighScores = scores.GetRange(0, Mathf.Min(scores.Count, 20));
 	}
 }
