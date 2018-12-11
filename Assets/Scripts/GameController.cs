@@ -178,16 +178,16 @@ public class GameController : MonoBehaviour {
 		FileStream file;
 		HighScores data = new HighScores();
 
-		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScores.dat"))
+		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat"))
 		{
-			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.Open);
+			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat", FileMode.Open);
 			data = (HighScores)bf.Deserialize(file);
 			file.Close();
 
 			scores = data.scores;
 		}
 
-		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.OpenOrCreate);
+		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat", FileMode.OpenOrCreate);
 
 		scores.Add(new HighScore
 		{
