@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System;
+using TypeRider.Assets.Classes;
 
 [Serializable]
 class HighScores
 {
-	public List<int> scores;
+	public List<HighScore> scores;
 }

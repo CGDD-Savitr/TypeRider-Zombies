@@ -6,6 +6,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using TypeRider.Assets.Classes;
+using System.Linq;
 
 public class PrintHighScores : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class PrintHighScores : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		List<int> scores = new List<int>();
+		List<HighScore> scores = new List<HighScore>();
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file;
 		HighScores data = new HighScores();
@@ -29,12 +30,8 @@ public class PrintHighScores : MonoBehaviour {
 
 		scores.Sort();
 		scores.Reverse();
+		list.text = string.Join("\n", scores.Select(score => score.ToString()).ToArray());
 
-		foreach (int score in scores)
-		{
-			list.text += "\n" + score;
-		}
-
-		CrossSceneRegistry.HighScores = scores.GetRange(0, Mathf.Min(scores.Count, 20));
+		CrossSceneRegistry.HighScores = scores.Select(score => score.Score).ToList().GetRange(0, Mathf.Min(scores.Count, 20));
 	}
 }
