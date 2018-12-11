@@ -6,12 +6,17 @@ public class SpawnObstacles : MonoBehaviour
 {
 
 	public Transform obstacleParent;
+    public Transform powerUpParent;
 	public GameObject tableSidePrefab;
 	public GameObject zombiePrefab;
 	public GameObject topObstaclePrefab;
-	public float floorLength = 40f;
+    public GameObject powerUpOne;
+    public GameObject powerUpTwo;
+    public GameObject powerUpThree;
+    public float floorLength = 40f;
 	public int numberOfObstacles = 40;
 	public int spaceBetweenObstacles = 1;
+    public float chanceOfPowerUp = 0.125f;
 
 
 	bool[] lastOpenSpots;
@@ -72,6 +77,31 @@ public class SpawnObstacles : MonoBehaviour
 			currentOpenSpots[i] = true;
 		}
 
+        for (int i = (int) (spaceBetweenObstacles / 2f); i < floorLength; i+= spaceBetweenObstacles)
+        {
+            // see if we want to spawn a power up
+            if (Random.Range(0f, 1.00f) < chanceOfPowerUp)
+            {
+                // which powerup
+                float whichPowerUp = Random.Range(0f, 1.00f);
+                int whichX = (int)Random.Range(0f, 2.99f);
+                // spawning powerup1
+                if (whichPowerUp < 0.33)
+                {
+                    InstantiatePowerUp(whichX, i, 0);
+                }
+                // spawning powerup2
+                else if (whichPowerUp < 0.66)
+                {
+                    InstantiatePowerUp(whichX, i, 1);
+                }
+                // spawning powerup3
+                else
+                {
+                    InstantiatePowerUp(whichX, i, 2);
+                }
+            }
+        }
 
 		for (int i = spaceBetweenObstacles; i < floorLength; i += spaceBetweenObstacles)
 		{
@@ -176,6 +206,31 @@ public class SpawnObstacles : MonoBehaviour
 
 		return true;
 	}
+
+    void InstantiatePowerUp(int xLocation, int yLocation, int whichPowerUp)
+    {
+        GameObject whichPrefab;
+        switch(whichPowerUp)
+        {
+            case 0:
+                whichPrefab = powerUpOne;
+                break;
+            case 1:
+                whichPrefab = powerUpTwo;
+                break;
+            case 2:
+                whichPrefab = powerUpThree;
+                break;
+            default:
+                return;
+        }
+
+        Instantiate(whichPrefab,
+                    new Vector3(startOfFloor.x + xLocation, 0f, startOfFloor.z + yLocation),
+                    whichPrefab.transform.localRotation,
+                    powerUpParent);
+    }
+
 	void InstantiateAnObstacle(int xLocation, int yLocation, int typeOfObstacle)
 	{
 		if (typeOfObstacle == 0)//spawning zombie

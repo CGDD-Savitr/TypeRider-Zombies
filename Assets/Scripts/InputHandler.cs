@@ -71,22 +71,6 @@ public class InputHandler : MonoBehaviour {
 
 	}
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			controller.TogglePause();
-		}
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Time.timeScale *= 2f;
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Time.timeScale *= 0.5f;
-        }
-    }
-
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString();

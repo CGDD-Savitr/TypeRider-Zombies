@@ -70,6 +70,18 @@ public class GameController : MonoBehaviour {
 				MilestoneText.text = "You are currently the top scorer!";
 			}
 		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			TogglePause();
+		}
+		else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale *= 2f;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Time.timeScale *= 0.5f;
+        }
 	}
 
 	public void TogglePause()
