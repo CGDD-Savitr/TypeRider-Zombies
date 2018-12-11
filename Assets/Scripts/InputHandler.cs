@@ -67,7 +67,15 @@ public class InputHandler : MonoBehaviour {
 		{
 			controller.TogglePause();
 		}
-	}
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale *= 2f;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Time.timeScale *= 0.5f;
+        }
+    }
 
 	public void OnValueChanged(InputField field)
 	{
@@ -77,7 +85,59 @@ public class InputHandler : MonoBehaviour {
 			clearHighlights();
 			return;
 		}
-		if (!highlightSelected(value))
+        // if i selected power
+        char lastKeyEntered = value[value.Length - 1];
+        if (char.IsDigit(lastKeyEntered) || lastKeyEntered == ' ')
+        {
+            switch (lastKeyEntered)
+            {
+                case '1':
+                    if (CrossSceneRegistry.CanUsePower[0])
+                    {
+                        CrossSceneRegistry.ActivatedPower[0] = true;
+                        CrossSceneRegistry.CanUsePower[0] = false;
+                    }
+                    break;
+                case '2':
+                    if (CrossSceneRegistry.CanUsePower[1])
+                    {
+                        CrossSceneRegistry.ActivatedPower[1] = true;
+                        CrossSceneRegistry.CanUsePower[1] = false;
+                    }
+                    break;
+                case '3':
+                    if (CrossSceneRegistry.CanUsePower[2])
+                    {
+                        foreach (Keyword keyword in keywords)
+                        {
+                            switch (keyword.Value)
+                            {
+                                case Direction.UP:
+                                    keyword.Key = "w";
+                                    break;
+                                case Direction.LEFT:
+                                    keyword.Key = "a";
+                                    break;
+                                case Direction.DOWN:
+                                    keyword.Key = "s";
+                                    break;
+                                case Direction.RIGHT:
+                                    keyword.Key = "d";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                        CrossSceneRegistry.ActivatedPower[2] = true;
+                        CrossSceneRegistry.CanUsePower[2] = false;
+                    }
+                    break;
+            }
+                
+            field.text = value.Substring(0, value.Length - 1);
+        }
+		else if (!highlightSelected(value))
 			field.text = ""; // Clear input if nothing is highlighted
 	}
 
@@ -109,9 +169,13 @@ public class InputHandler : MonoBehaviour {
 				{
 					// Full match
 					controller.MovePlayer(keyword.Value);
-					keyword.Key = controller.NextWord(keyword.Key);
-					richText = keyword.Key;
-				}
+                    if (!CrossSceneRegistry.ActivatedPower[2])
+                    {
+                        keyword.Key = controller.NextWord(keyword.Key);
+                    }
+                    richText = keyword.Key;
+
+                }
 				keyword.Text.text = richText;
 			}
 			else

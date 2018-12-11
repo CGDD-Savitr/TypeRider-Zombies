@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TypeRider.Assets.Classes;
 using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
@@ -23,16 +24,18 @@ public class PlayerCollisions : MonoBehaviour
 		{
 			if (other.gameObject.tag != "Table" && other.gameObject.tag != "FloorTrigger")
 			{
-				GameManager.SendMessage("TakeDamage");
-				if (anim)
-				{
-					anim.SetTrigger("TakeDamage");
-				}
-				if (audioSource)
-				{
-					audioSource.Play();
-				}
+                if (CrossSceneRegistry.ActivatedPower[0] == false){
+                    GameManager.SendMessage("TakeDamage");
+                    if (anim)
+                    {
+                        anim.SetTrigger("TakeDamage");
+                    }
+                    if (audioSource)
+                    {
+                        audioSource.Play();
+                    }
+                }
 			}
 		}
-	}
+	} 
 }
