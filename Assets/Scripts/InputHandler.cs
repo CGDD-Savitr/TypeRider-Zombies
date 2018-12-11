@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TypeRider.Assets.Classes;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -16,11 +17,13 @@ public class InputHandler : MonoBehaviour {
 
 	public string HighlightColor = "green";
 
+	public string ErrorColor = "red";
+
 	public GameObject Controls;
 
 	GameController controller;
 
-	Keyword[] keywords;
+	List<Keyword> keywords;
 
 	Animator animator;
 
@@ -32,7 +35,7 @@ public class InputHandler : MonoBehaviour {
 
 	void Start()
 	{
-		keywords = new Keyword[]
+		keywords = new List<Keyword>
 		{
 			new Keyword
 			{
@@ -72,21 +75,58 @@ public class InputHandler : MonoBehaviour {
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString();
-		if (string.IsNullOrEmpty(value))
+		if (!string.IsNullOrEmpty(value))
 		{
-			clearHighlights();
-			return;
+			bool match = false;
+			keywords.ForEach(keyword => 
+			{
+				if (keyword.Key.StartsWith(value))
+				{
+					match = true;
+					keyword.Text.text = "<color=" + HighlightColor + "><b>" + value + "</b></color>" + keyword.Key.Substring(value.Length);
+				}
+				else
+				{
+					keyword.Text.text = keyword.Key;
+				}
+			});
+			if (!match)
+			{
+				keywords.ForEach(keyword => keyword.Text.text = "<color=" + ErrorColor + "><b>" + keyword.Key + "</b></color>");
+			}
 		}
-		if (!highlightSelected(value))
-			field.text = ""; // Clear input if nothing is highlighted
+	}
+
+	public void OnEndEdit(InputField field)
+	{
+		Keyword keyword = getMatch(field.text.ToString());
+		if (keyword != null)
+		{
+			controller.MovePlayer(keyword.Value);
+			keyword.Key = controller.NextWord(keyword.Key);
+		}
+		else if (animator)
+		{
+			animator.Play("uiError", -1, 0f);
+		}
+		clearHighlights();
+		field.text = "";
+	}
+
+	Keyword getMatch(string value)
+	{
+		foreach (Keyword keyword in keywords)
+		{
+			if (keyword.Key == value)
+				return keyword;
+		}
+		return null;
 	}
 
 	void clearHighlights()
 	{
 		foreach (Keyword keyword in keywords)
-		{
 			keyword.Text.text = keyword.Key;
-		}
 	}
 
 	bool highlightSelected(string value)
