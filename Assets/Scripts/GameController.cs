@@ -128,11 +128,15 @@ public class GameController : MonoBehaviour {
 			wordLength++;
 	}
 
+	public string NextWord()
+	{
+		return wordPool.GetWord(wordLength);
+	}
+
 	public string NextWord(string old)
 	{
-		string word = wordPool.GetWord(wordLength);
 		wordPool.ReturnWord(old);
-		return word;
+		return NextWord();
 	}
 
 	public void MovePlayerLeft() 

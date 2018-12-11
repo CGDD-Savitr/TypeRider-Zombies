@@ -62,6 +62,12 @@ public class InputHandler : MonoBehaviour {
 				Key = LeftKeyword.text
 			}
 		};
+		keywords.ForEach(keyword => 
+		{
+			Text queue = getQueuedWord(keyword);
+			queue.text = controller.NextWord();
+		});
+
 	}
 
 	void Update()
@@ -103,7 +109,11 @@ public class InputHandler : MonoBehaviour {
 		if (keyword != null)
 		{
 			controller.MovePlayer(keyword.Value);
-			keyword.Key = controller.NextWord(keyword.Key);
+			Text queuedWord = getQueuedWord(keyword);
+			keyword.Text.text = queuedWord.text;
+			string old = keyword.Key;
+			queuedWord.text = controller.NextWord(old);
+			keyword.Key = keyword.Text.text;
 		}
 		else if (animator)
 		{
@@ -129,38 +139,13 @@ public class InputHandler : MonoBehaviour {
 			keyword.Text.text = keyword.Key;
 	}
 
-	bool highlightSelected(string value)
+	Text getQueuedWord(Keyword keyword)
 	{
-		bool valid = false; // No keyword matches input value
-		bool match = false; // Partial match
-		foreach (Keyword keyword in keywords)
+		foreach (Text text in keyword.Text.GetComponentsInChildren<Text>())
 		{
-			if (keyword.Key.StartsWith(value))
-			{
-				valid = true;
-				string richText = "<color=" + HighlightColor + "><b>" + value + "</b></color>"; // Add style to matched section
-				if (keyword.Key.Length > value.Length)
-				{
-					// Partial match
-					match = true;
-					richText += keyword.Key.Substring(value.Length);
-				}
-				else
-				{
-					// Full match
-					controller.MovePlayer(keyword.Value);
-					keyword.Key = controller.NextWord(keyword.Key);
-					richText = keyword.Key;
-				}
-				keyword.Text.text = richText;
-			}
-			else
-			{
-				keyword.Text.text = keyword.Key;
-			}
+			if (text.tag == "QueueWord")
+				return text;
 		}
-		if (!valid && animator)
-			animator.Play("uiError", -1, 0f);
-		return match;
+		return null;
 	}
 }
