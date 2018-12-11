@@ -12,6 +12,9 @@ TagManager:
   - Zombie
   - PlayerInput
   - Score
+  - PowerUpOne
+  - PowerUpTwo
+  - PowerUpThree
   layers:
   - Default
   - TransparentFX

@@ -71,7 +71,7 @@ namespace TypeRider.Assets.Classes
 
         private static List<int> highScores = new List<int>();
 
-        private static bool[] canUsePower = new bool[] { true, true, true };
+        private static bool[] canUsePower = new bool[] { false, false, false };
 
         private static bool[] activatedPower = new bool[3];
     }

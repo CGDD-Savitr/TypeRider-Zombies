@@ -158,6 +158,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2061152987}
   m_Script: {fileID: 11500000, guid: e391943ac476eed41980a588bf5e3f7e, type: 3}
+--- !u!4 &281031105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4284392543082312, guid: a22f50726ff821047a74a8f6ba9023ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1002556175}
 --- !u!114 &291848315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114942814740809534, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
@@ -364,6 +369,29 @@ Prefab:
       propertyPath: m_Intensity
       value: 0.61
       objectReference: {fileID: 0}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: powerUpOne
+      value: 
+      objectReference: {fileID: 1577767799833238, guid: 6941a6da209d7f14ebea7496e2909b6d,
+        type: 2}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: powerUpTwo
+      value: 
+      objectReference: {fileID: 1292518677003874, guid: 1ad819b4823f3d44d95413a5703facc2,
+        type: 2}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: powerUpThree
+      value: 
+      objectReference: {fileID: 1555520901061348, guid: fd187c48b57cc094a8824ca113c6b323,
+        type: 2}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: powerUpParent
+      value: 
+      objectReference: {fileID: 281031105}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c56060f95d2c9468e297dd78032910, type: 2}
   m_IsPrefabAsset: 0
@@ -622,6 +650,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1144704094783174, guid: 8198f4b712433af41872304543c83c17,
     type: 2}
   m_PrefabInternal: {fileID: 2061152987}
+--- !u!114 &1739539058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739539054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb353662b12c6f498f8cd3cc5a5900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerOneDuration: 5
+  powerTwoDuration: 5
+  powerThreeDuration: 10
 --- !u!1 &1808088038 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1002901025295130, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
@@ -830,6 +872,11 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 108577000}
+    - target: {fileID: 224330694486238566, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -47
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 801ba7c4d5291074481f7e2f8fcf33c4, type: 2}
   m_IsPrefabAsset: 0

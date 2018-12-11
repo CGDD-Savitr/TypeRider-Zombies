@@ -24,6 +24,22 @@ public class PlayerCollisions : MonoBehaviour
 		{
 			if (other.gameObject.tag != "Table" && other.gameObject.tag != "FloorTrigger")
 			{
+                switch (other.gameObject.tag)
+                {
+                    case "PowerUpOne":
+                        CrossSceneRegistry.CanUsePower[0] = true;
+                        Destroy(other.gameObject);
+                        return;
+                    case "PowerUpTwo":
+                        CrossSceneRegistry.CanUsePower[1] = true;
+                        Destroy(other.gameObject);
+                        return;
+                    case "PowerUpThree":
+                        CrossSceneRegistry.CanUsePower[2] = true;
+                        Destroy(other.gameObject);
+                        return;
+                }
+
                 if (CrossSceneRegistry.ActivatedPower[0] == false){
                     GameManager.SendMessage("TakeDamage");
                     if (anim)
@@ -35,6 +51,7 @@ public class PlayerCollisions : MonoBehaviour
                         audioSource.Play();
                     }
                 }
+                
 			}
 		}
 	} 
