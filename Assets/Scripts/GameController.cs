@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -172,23 +173,27 @@ public class GameController : MonoBehaviour {
 
 	void SaveHighScore()
 	{
-		List<int> scores = new List<int>();
+		List<HighScore> scores = new List<HighScore>();
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file;
 		HighScores data = new HighScores();
 
-		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScores.dat"))
+		if (File.Exists(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat"))
 		{
-			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.Open);
+			file = File.Open(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat", FileMode.Open);
 			data = (HighScores)bf.Deserialize(file);
 			file.Close();
 
 			scores = data.scores;
 		}
 
-		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScores.dat", FileMode.OpenOrCreate);
+		file = File.Open(Application.persistentDataPath + "/TypeRiderHighScoresTimestamped.dat", FileMode.OpenOrCreate);
 
-		scores.Add(CrossSceneRegistry.PlayerScore);
+		scores.Add(new HighScore
+		{
+			Score = CrossSceneRegistry.PlayerScore,
+			Timestamp = DateTime.Now
+		});
 		data.scores = scores;
 
 		bf.Serialize(file, data);
