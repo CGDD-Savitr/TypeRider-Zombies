@@ -17,28 +17,52 @@ namespace TypeRider.Assets.Classes
             }
         }
 
-        public static int PlayerScore 
-        { 
+        public static int PlayerScore
+        {
             get
             {
                 return playerScore;
-            } 
+            }
             set
             {
                 playerScore = value;
-            } 
+            }
         }
 
-        public static List<int> HighScores 
-        { 
+        public static List<int> HighScores
+        {
             get
             {
                 return highScores;
-            } 
+            }
             set
             {
                 highScores = value;
-            } 
+            }
+        }
+
+        public static bool[] CanUsePower
+        {
+            get
+            {
+                return canUsePower;
+            }
+            set
+            {
+                canUsePower = value;
+            }
+        }
+
+        public static bool[] ActivatedPower
+        {
+            get
+            {
+                return activatedPower;
+            }
+            set
+            {
+                activatedPower = value;
+            }
         }
 
         private static IDifficulty difficulty = new NormalDifficulty();
@@ -46,5 +70,9 @@ namespace TypeRider.Assets.Classes
         private static int playerScore = 0;
 
         private static List<int> highScores = new List<int>();
+
+        private static bool[] canUsePower = new bool[] { true, true, true };
+
+        private static bool[] activatedPower = new bool[3];
     }
 }

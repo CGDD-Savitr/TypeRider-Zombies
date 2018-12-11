@@ -12,6 +12,8 @@ TagManager:
   - Zombie
   - PlayerInput
   - Score
+  - QueueWord
+  - ImageControls
   layers:
   - Default
   - TransparentFX

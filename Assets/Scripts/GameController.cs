@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject SceneManagerObject;
 
+	public GameObject TypingControlsImage;
+
+	public GameObject PlayerInput;
+
 	public Text PlayerHP;
 
 	public Text MilestoneText;
@@ -30,6 +34,8 @@ public class GameController : MonoBehaviour {
 	Lane playerLane = Lane.BOTTOM_MIDDLE;
 
 	int wordLength = 5;
+
+	bool typingControls = true;
 
 	Stack<int> milestones;
 
@@ -173,6 +179,34 @@ public class GameController : MonoBehaviour {
 			player.MoveDown();
 			playerLane -= 3;
 		}
+	}
+
+	public void EnablePowerUp(int powerup)
+	{
+		if (powerup >= 0 && powerup <= 2 && CrossSceneRegistry.CanUsePower[powerup])
+		{
+			CrossSceneRegistry.ActivatedPower[powerup] = true;
+			CrossSceneRegistry.CanUsePower[powerup] = false;
+		}
+	}
+
+	public void ToggleControls()
+	{
+		if (typingControls)
+		{
+			GetComponent<InputHandler>().enabled = false;
+			GetComponent<KeyboardControls>().enabled = true;
+			PlayerInput.GetComponent<InputField>().enabled = false;
+			TypingControlsImage.GetComponent<Image>().color = Color.gray;
+		}
+		else
+		{
+			GetComponent<InputHandler>().enabled = true;
+			GetComponent<KeyboardControls>().enabled = false;
+			PlayerInput.GetComponent<InputField>().enabled = true;
+			TypingControlsImage.GetComponent<Image>().color = Color.white;
+		}
+		typingControls = !typingControls;
 	}
 
 	void SaveHighScore()

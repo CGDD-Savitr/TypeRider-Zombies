@@ -20,8 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4905744152265828}
   - component: {fileID: 114482559246741912}
+  - component: {fileID: 114388257953947000}
   - component: {fileID: 114076516150926628}
   - component: {fileID: 114282090986084876}
+  - component: {fileID: 114581144890169024}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -147,6 +149,7 @@ MonoBehaviour:
   UpKeyword: {fileID: 0}
   DownKeyword: {fileID: 0}
   HighlightColor: green
+  ErrorColor: red
   Controls: {fileID: 0}
 --- !u!114 &114282090986084876
 MonoBehaviour:
@@ -159,8 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421a56d2941fbba4bbb4b6724b4e363a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  File: med
-  DefaultWord: Savitr
+  DefaultWord: savitr
 --- !u!114 &114285187810945774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,9 +175,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerScoreText: {fileID: 0}
-  Threshold: 10000
   Base: 10
   Player: {fileID: 0}
+--- !u!114 &114388257953947000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144704094783174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb353662b12c6f498f8cd3cc5a5900f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerOneDuration: 5
+  powerTwoDuration: 5
+  powerThreeDuration: 10
 --- !u!114 &114482559246741912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,9 +204,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   SceneManagerObject: {fileID: 1656611117615424}
+  TypingControlsImage: {fileID: 0}
+  PlayerInput: {fileID: 0}
   PlayerHP: {fileID: 0}
   MilestoneText: {fileID: 0}
-  playerHP: 1
+  playerHP: 5
 --- !u!114 &114502102552234368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,3 +223,14 @@ MonoBehaviour:
   gameOverSceneName: Game Over
   mainMenuSceneName: Main Menu
   pauseScreenSceneName: Pause Screen
+--- !u!114 &114581144890169024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144704094783174}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ef97cf417f8784594712f017d9fe01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

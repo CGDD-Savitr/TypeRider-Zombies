@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TypeRider.Assets.Classes;
@@ -76,13 +77,33 @@ public class InputHandler : MonoBehaviour {
 		{
 			controller.TogglePause();
 		}
-	}
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Time.timeScale *= 2f;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Time.timeScale *= 0.5f;
+        }
+    }
 
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString();
 		if (!string.IsNullOrEmpty(value))
 		{
+			if (char.IsDigit(value.Last()))
+			{
+				int dig = Int32.Parse(value.Last().ToString()) - 1;
+				controller.EnablePowerUp(dig);
+				field.text = field.text.Substring(0, value.Length - 1);
+				return;
+			}
+			if (value.Last() == ' ')
+			{
+				field.text = field.text.Substring(0, value.Length - 1);
+				return;
+			}
 			bool match = false;
 			keywords.ForEach(keyword => 
 			{
