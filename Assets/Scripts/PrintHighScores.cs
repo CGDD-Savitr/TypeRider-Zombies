@@ -30,7 +30,7 @@ public class PrintHighScores : MonoBehaviour {
 
 		scores.Sort();
 		scores.Reverse();
-		list.text = string.Join("\n", scores.Select(score => score.ToString()).ToArray());
+		list.text = "HIGH SCORES:\n" + string.Join("\n", scores.Select(score => score.ToString()).ToArray());
 
 		CrossSceneRegistry.HighScores = scores.Select(score => score.Score).ToList().GetRange(0, Mathf.Min(scores.Count, 20));
 	}
