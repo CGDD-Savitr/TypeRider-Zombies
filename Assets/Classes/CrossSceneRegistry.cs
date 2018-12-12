@@ -65,7 +65,19 @@ namespace TypeRider.Assets.Classes
             }
         }
 
-        private static IDifficulty difficulty = new NormalDifficulty();
+		public static int[] PowerDurations
+		{
+			get
+			{
+				return powerDurations;
+			}
+			set
+			{
+				powerDurations = value;
+			}
+		}
+
+		private static IDifficulty difficulty = new NormalDifficulty();
 
         private static int playerScore = 0;
 
@@ -74,5 +86,7 @@ namespace TypeRider.Assets.Classes
         private static bool[] canUsePower = new bool[] { false, false, false };
 
         private static bool[] activatedPower = new bool[3];
-    }
+
+		private static int[] powerDurations = new int[] { 5, 5, 10 };
+	}
 }

@@ -22,21 +22,30 @@ public class PlayerCollisions : MonoBehaviour
 	{
 		if (GameManager)
 		{
-			if (other.gameObject.tag != "Table" && other.gameObject.tag != "FloorTrigger")
+			if (other.gameObject.tag != "FloorTrigger")
 			{
                 switch (other.gameObject.tag)
                 {
                     case "PowerUpOne":
-                        CrossSceneRegistry.CanUsePower[0] = true;
-                        Destroy(other.gameObject);
+						if (!CrossSceneRegistry.ActivatedPower[0])
+						{
+							CrossSceneRegistry.CanUsePower[0] = true;
+							Destroy(other.gameObject);
+						}
                         return;
                     case "PowerUpTwo":
-                        CrossSceneRegistry.CanUsePower[1] = true;
-                        Destroy(other.gameObject);
+						if (!CrossSceneRegistry.ActivatedPower[1])
+						{
+							CrossSceneRegistry.CanUsePower[1] = true;
+							Destroy(other.gameObject);
+						}
                         return;
                     case "PowerUpThree":
-                        CrossSceneRegistry.CanUsePower[2] = true;
-                        Destroy(other.gameObject);
+						if (!CrossSceneRegistry.ActivatedPower[2])
+						{
+							CrossSceneRegistry.CanUsePower[2] = true;
+							Destroy(other.gameObject);
+						}
                         return;
                 }
 

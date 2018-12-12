@@ -10,7 +10,7 @@ namespace TypeRider.Assets.Classes
 
         public override string ToString()
         {
-            return Timestamp.ToString("dd/MM/yyyy HH:mm:ss") + " - " + Score;
+            return Timestamp.ToString("dd/MM/yyyy HH:mm") + " - " + Score;
         }
     }
 }

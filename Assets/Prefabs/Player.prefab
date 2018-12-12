@@ -464,7 +464,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 0.9137255, a: 0.5647059}
+      key0: {r: 0, g: 1, b: 0.94130874, a: 0.5647059}
       key1: {r: 0, g: 0, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -509,7 +509,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.91298866, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.61
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -548,15 +548,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleParent: {fileID: 0}
+  powerUpParent: {fileID: 0}
   tableSidePrefab: {fileID: 1139124997129696, guid: fd8a69f20a5f8d148a69cd0e32bcef2e,
     type: 2}
   zombiePrefab: {fileID: 1518029114198620, guid: 43b5d29225aa13143a01b7c5d31f7803,
     type: 2}
   topObstaclePrefab: {fileID: 1818562045030500, guid: d24132e20212cac4894c98b1252ec2ee,
     type: 2}
+  powerUpOne: {fileID: 1577767799833238, guid: 6941a6da209d7f14ebea7496e2909b6d, type: 2}
+  powerUpTwo: {fileID: 1292518677003874, guid: 1ad819b4823f3d44d95413a5703facc2, type: 2}
+  powerUpThree: {fileID: 1555520901061348, guid: fd187c48b57cc094a8824ca113c6b323,
+    type: 2}
   floorLength: 40
   numberOfObstacles: 20
   spaceBetweenObstacles: 5
+  chanceOfPowerUp: 0.125
 --- !u!114 &114113692734431036
 MonoBehaviour:
   m_ObjectHideFlags: 1

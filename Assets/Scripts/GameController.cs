@@ -15,7 +15,8 @@ public class GameController : MonoBehaviour {
 
 	public GameObject PlayerInput;
 
-	public Text PlayerHP;
+	public GameObject PlayerHPSliderObject;
+	Slider PlayerHPSlider;
 
 	public Text MilestoneText;
 
@@ -50,7 +51,11 @@ public class GameController : MonoBehaviour {
 	void Start()
 	{
 		Time.timeScale = 1.0f;
-		PlayerHP.text = playerHP.ToString();
+
+		PlayerHPSlider = PlayerHPSliderObject.GetComponent<Slider>();
+		PlayerHPSlider.maxValue = playerHP;
+		PlayerHPSlider.value = playerHP;
+
 		wordLength = wordPool.ShortestWordLength;
 		milestones = new Stack<int>(CrossSceneRegistry.HighScores);
 	}
@@ -103,7 +108,7 @@ public class GameController : MonoBehaviour {
 	public void TakeDamage()
 	{
 		playerHP--;
-		PlayerHP.text = playerHP.ToString();
+		PlayerHPSlider.value = playerHP;
 
 		if (playerHP <= 0)
 		{

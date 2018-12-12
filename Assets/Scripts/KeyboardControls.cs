@@ -13,6 +13,19 @@ public class KeyboardControls : MonoBehaviour {
 
 	void Update () 
 	{
+		if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+		{
+			controller.EnablePowerUp(0);
+		}
+		else if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+		{
+			controller.EnablePowerUp(1);
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+		{
+			controller.EnablePowerUp(2);
+		}
+
 		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			controller.MovePlayerUp();
