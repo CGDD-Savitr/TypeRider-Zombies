@@ -68,7 +68,14 @@ public class GameController : MonoBehaviour {
 			currentTarget = milestones.Count > 0 ? milestones.Pop() : -1;
 			if (currentTarget != -1)
 			{
-				MilestoneText.text = "Next high score is " + currentTarget.ToString();
+				string suffix = "th";
+				if (milestones.Count == 2)
+					suffix = "rd";
+				else if (milestones.Count == 1)
+					suffix = "nd";
+				else if (milestones.Count == 0)
+					suffix = "st";
+				MilestoneText.text = milestones.Count + 1 + suffix + " place high score is " + currentTarget.ToString();
 			}
 			else
 			{

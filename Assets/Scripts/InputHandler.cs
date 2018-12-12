@@ -20,6 +20,8 @@ public class InputHandler : MonoBehaviour {
 
 	public string ErrorColor = "red";
 
+	public int MaxLength = 10;
+
 	public GameObject Controls;
 
 	GameController controller;
@@ -32,10 +34,6 @@ public class InputHandler : MonoBehaviour {
 	{
 		controller = FindObjectOfType<GameController>();
 		animator = Controls.GetComponent<Animator>();
-	}
-
-	void Start()
-	{
 		keywords = new List<Keyword>
 		{
 			new Keyword
@@ -63,6 +61,10 @@ public class InputHandler : MonoBehaviour {
 				Key = LeftKeyword.text
 			}
 		};
+	}
+
+	void Start()
+	{
 		keywords.ForEach(keyword => 
 		{
 			Text queue = getQueuedWord(keyword);
@@ -73,7 +75,7 @@ public class InputHandler : MonoBehaviour {
 
 	public void OnValueChanged(InputField field)
 	{
-		string value = field.text.ToString();
+		string value = field.text.ToString().ToLower();
 		if (!string.IsNullOrEmpty(value))
 		{
 			if (char.IsDigit(value.Last()))
@@ -88,29 +90,36 @@ public class InputHandler : MonoBehaviour {
 				field.text = field.text.Substring(0, value.Length - 1);
 				return;
 			}
-			bool match = false;
 			keywords.ForEach(keyword => 
 			{
-				if (keyword.Key.StartsWith(value))
+				string richText = "";
+				for (int i = 0; i < keyword.Key.Length; ++i)
 				{
-					match = true;
-					keyword.Text.text = "<color=" + HighlightColor + "><b>" + value + "</b></color>" + keyword.Key.Substring(value.Length);
+					if (value.Length <= i)
+						break;
+					if (keyword.Key[i] == value[i])
+						richText += "<color=" + HighlightColor + "><b>" + value[i] + "</b></color>";
+					else
+						richText += "<color=" + ErrorColor + "><b>" + keyword.Key[i] + "</b></color>";
 				}
-				else
-				{
-					keyword.Text.text = keyword.Key;
-				}
+				if (value.Length < keyword.Key.Length)
+					richText += keyword.Key.Substring(value.Length);
+				else if (value.Length > keyword.Key.Length)
+					richText += "<color=" + ErrorColor + "><b>" + new String('x', Mathf.Min(value.Length, MaxLength) - keyword.Key.Length) + "</b></color>";
+				keyword.Text.text = richText;
 			});
-			if (!match)
-			{
-				keywords.ForEach(keyword => keyword.Text.text = "<color=" + ErrorColor + "><b>" + keyword.Key + "</b></color>");
-			}
+			if (value.Length > MaxLength)
+				field.text = field.text.Substring(0, MaxLength);
+		}
+		else
+		{
+			keywords.ForEach(keyword => keyword.Text.text = keyword.Key);
 		}
 	}
 
 	public void OnEndEdit(InputField field)
 	{
-		Keyword keyword = getMatch(field.text.ToString());
+		Keyword keyword = getMatch(field.text.ToString().ToLower());
 		if (keyword != null)
 		{
 			controller.MovePlayer(keyword.Value);
