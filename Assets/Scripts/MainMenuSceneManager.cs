@@ -8,6 +8,11 @@ public class MainMenuSceneManager : MonoBehaviour
 
 	public string gameSceneName;
 
+	void Start()
+	{
+		Time.timeScale = 1.0f;
+	}
+
 	public void PlayGame()
 	{
 		SceneManager.LoadScene(gameSceneName);
