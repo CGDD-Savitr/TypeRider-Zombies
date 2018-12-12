@@ -56,10 +56,10 @@ GameObject:
   - component: {fileID: 33952213657377438}
   - component: {fileID: 23197668324951212}
   - component: {fileID: 95225910993475714}
-  - component: {fileID: 65239234670527598}
   - component: {fileID: 114768439602569974}
   - component: {fileID: 82071326360063842}
   - component: {fileID: 167797547288876600}
+  - component: {fileID: 135468323609854846}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -258,18 +258,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65239234670527598
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1365451532604254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65417473264835974
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -280,7 +268,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 1}
+  m_Size: {x: 3, y: 8, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65717136393323120
 BoxCollider:
@@ -292,7 +280,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 1}
+  m_Size: {x: 3, y: 8, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82071326360063842
 AudioSource:
@@ -549,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleParent: {fileID: 0}
   powerUpParent: {fileID: 0}
+  coinParent: {fileID: 0}
   tableSidePrefab: {fileID: 1139124997129696, guid: fd8a69f20a5f8d148a69cd0e32bcef2e,
     type: 2}
   zombiePrefab: {fileID: 1518029114198620, guid: 43b5d29225aa13143a01b7c5d31f7803,
@@ -559,10 +548,12 @@ MonoBehaviour:
   powerUpTwo: {fileID: 1292518677003874, guid: 1ad819b4823f3d44d95413a5703facc2, type: 2}
   powerUpThree: {fileID: 1555520901061348, guid: fd187c48b57cc094a8824ca113c6b323,
     type: 2}
+  coin: {fileID: 1956644748098900, guid: 53b118d2d51c64540ba52d83cde6ee42, type: 2}
   floorLength: 40
   numberOfObstacles: 20
   spaceBetweenObstacles: 5
   chanceOfPowerUp: 0.125
+  chanceOfCoin: 0.33
 --- !u!114 &114113692734431036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,8 +602,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorParent: {fileID: 0}
-  floorPrefab: {fileID: 1779505604048498, guid: b1b23413dc5e05342b2e09c3736977c3,
-    type: 2}
+  floorPrefabs:
+  - {fileID: 1779505604048498, guid: b1b23413dc5e05342b2e09c3736977c3, type: 2}
+  - {fileID: 1832254624169566, guid: deb813c5ed4179042853e902f1c55bd6, type: 2}
+  - {fileID: 1573091261526366, guid: df82192816b1e5f4d90a7a00487f7d51, type: 2}
   floorLength: 40
 --- !u!114 &114768439602569974
 MonoBehaviour:
@@ -625,8 +618,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7247631ff7a059e44a5c30fb4c230846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreControllerObject: {fileID: 0}
   GameManager: {fileID: 0}
   DamageOverlay: {fileID: 0}
+  coinScore: 1000
+--- !u!135 &135468323609854846
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365451532604254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!167 &167797547288876600
 AudioReverbZone:
   m_ObjectHideFlags: 1
