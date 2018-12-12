@@ -34,10 +34,6 @@ public class InputHandler : MonoBehaviour {
 	{
 		controller = FindObjectOfType<GameController>();
 		animator = Controls.GetComponent<Animator>();
-	}
-
-	void Start()
-	{
 		keywords = new List<Keyword>
 		{
 			new Keyword
@@ -65,6 +61,10 @@ public class InputHandler : MonoBehaviour {
 				Key = LeftKeyword.text
 			}
 		};
+	}
+
+	void Start()
+	{
 		keywords.ForEach(keyword => 
 		{
 			Text queue = getQueuedWord(keyword);
@@ -75,7 +75,7 @@ public class InputHandler : MonoBehaviour {
 
 	public void OnValueChanged(InputField field)
 	{
-		string value = field.text.ToString();
+		string value = field.text.ToString().ToLower();
 		if (!string.IsNullOrEmpty(value))
 		{
 			if (char.IsDigit(value.Last()))
@@ -119,7 +119,7 @@ public class InputHandler : MonoBehaviour {
 
 	public void OnEndEdit(InputField field)
 	{
-		Keyword keyword = getMatch(field.text.ToString());
+		Keyword keyword = getMatch(field.text.ToString().ToLower());
 		if (keyword != null)
 		{
 			controller.MovePlayer(keyword.Value);
