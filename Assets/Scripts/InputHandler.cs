@@ -106,6 +106,10 @@ public class InputHandler : MonoBehaviour {
 				keywords.ForEach(keyword => keyword.Text.text = "<color=" + ErrorColor + "><b>" + keyword.Key + "</b></color>");
 			}
 		}
+		else
+		{
+			keywords.ForEach(keyword => keyword.Text.text = keyword.Key);
+		}
 	}
 
 	public void OnEndEdit(InputField field)
