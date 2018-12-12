@@ -20,6 +20,8 @@ public class InputHandler : MonoBehaviour {
 
 	public string ErrorColor = "red";
 
+	public int MaxLength = 10;
+
 	public GameObject Controls;
 
 	GameController controller;
@@ -91,9 +93,9 @@ public class InputHandler : MonoBehaviour {
 			keywords.ForEach(keyword => 
 			{
 				string richText = "";
-				for (int i = 0; i < value.Length; ++i)
+				for (int i = 0; i < keyword.Key.Length; ++i)
 				{
-					if (! (keyword.Key.Length > i))
+					if (value.Length <= i)
 						break;
 					if (keyword.Key[i] == value[i])
 						richText += "<color=" + HighlightColor + "><b>" + value[i] + "</b></color>";
@@ -102,8 +104,12 @@ public class InputHandler : MonoBehaviour {
 				}
 				if (value.Length < keyword.Key.Length)
 					richText += keyword.Key.Substring(value.Length);
+				else if (value.Length > keyword.Key.Length)
+					richText += "<color=" + ErrorColor + "><b>" + new String('x', Mathf.Min(value.Length, MaxLength) - keyword.Key.Length) + "</b></color>";
 				keyword.Text.text = richText;
 			});
+			if (value.Length > MaxLength)
+				field.text = field.text.Substring(0, MaxLength);
 		}
 		else
 		{
