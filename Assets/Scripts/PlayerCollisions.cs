@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
-
+    public GameObject scoreControllerObject;
 	public GameObject GameManager;
 	public GameObject DamageOverlay;
+    public int coinScore = 1000;
+
+    private ScoreController scoreController;
 
 	Animator anim;
 	AudioSource audioSource;
@@ -16,6 +19,7 @@ public class PlayerCollisions : MonoBehaviour
 	{
 		anim = DamageOverlay.GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
+        scoreController = scoreControllerObject.GetComponent<ScoreController>();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -46,6 +50,10 @@ public class PlayerCollisions : MonoBehaviour
 							CrossSceneRegistry.CanUsePower[2] = true;
 							Destroy(other.gameObject);
 						}
+                        return;
+                    case "Coin":
+                        scoreController.AddScore(coinScore);
+                        Destroy(other.gameObject);
                         return;
                 }
 

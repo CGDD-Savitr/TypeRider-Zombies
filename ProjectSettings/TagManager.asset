@@ -17,6 +17,7 @@ TagManager:
   - PowerUpOne
   - PowerUpTwo
   - PowerUpThree
+  - Coin
   layers:
   - Default
   - TransparentFX

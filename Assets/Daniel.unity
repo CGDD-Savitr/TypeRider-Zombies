@@ -1163,6 +1163,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389691942}
   m_CullTransparentMesh: 0
+--- !u!1 &397583325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1995347973129194, guid: 8198f4b712433af41872304543c83c17,
+    type: 2}
+  m_PrefabInternal: {fileID: 2061152987}
 --- !u!1001 &405931313
 Prefab:
   m_ObjectHideFlags: 0
@@ -2010,6 +2015,22 @@ Prefab:
       propertyPath: powerUpParent
       value: 
       objectReference: {fileID: 346474879}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: coin
+      value: 
+      objectReference: {fileID: 1005567117431030, guid: 53b118d2d51c64540ba52d83cde6ee42,
+        type: 2}
+    - target: {fileID: 114049324744615578, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: coinParent
+      value: 
+      objectReference: {fileID: 1546363480}
+    - target: {fileID: 114768439602569974, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: scoreControllerObject
+      value: 
+      objectReference: {fileID: 397583325}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c56060f95d2c9468e297dd78032910, type: 2}
   m_IsPrefabAsset: 0
@@ -3324,6 +3345,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
+--- !u!4 &1546363480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4734516453123850, guid: a22f50726ff821047a74a8f6ba9023ee,
+    type: 2}
+  m_PrefabInternal: {fileID: 1002556175}
 --- !u!1 &1563503068
 GameObject:
   m_ObjectHideFlags: 0
