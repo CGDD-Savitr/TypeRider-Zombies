@@ -88,23 +88,22 @@ public class InputHandler : MonoBehaviour {
 				field.text = field.text.Substring(0, value.Length - 1);
 				return;
 			}
-			bool match = false;
 			keywords.ForEach(keyword => 
 			{
-				if (keyword.Key.StartsWith(value))
+				string richText = "";
+				for (int i = 0; i < value.Length; ++i)
 				{
-					match = true;
-					keyword.Text.text = "<color=" + HighlightColor + "><b>" + value + "</b></color>" + keyword.Key.Substring(value.Length);
+					if (! (keyword.Key.Length > i))
+						break;
+					if (keyword.Key[i] == value[i])
+						richText += "<color=" + HighlightColor + "><b>" + value[i] + "</b></color>";
+					else
+						richText += "<color=" + ErrorColor + "><b>" + keyword.Key[i] + "</b></color>";
 				}
-				else
-				{
-					keyword.Text.text = keyword.Key;
-				}
+				if (value.Length < keyword.Key.Length)
+					richText += keyword.Key.Substring(value.Length);
+				keyword.Text.text = richText;
 			});
-			if (!match)
-			{
-				keywords.ForEach(keyword => keyword.Text.text = "<color=" + ErrorColor + "><b>" + keyword.Key + "</b></color>");
-			}
 		}
 		else
 		{
