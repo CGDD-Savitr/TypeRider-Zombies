@@ -613,7 +613,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4376035468206538}
   - component: {fileID: 33139757051110082}
-  - component: {fileID: 65316451656066986}
   - component: {fileID: 23353109148522434}
   m_Layer: 0
   m_Name: Cube (1)
@@ -716,7 +715,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4534289882183616}
   - component: {fileID: 33502062515831740}
-  - component: {fileID: 65797226096023670}
   - component: {fileID: 23136724501094132}
   m_Layer: 0
   m_Name: Cube (2)
@@ -1536,7 +1534,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4245862703908848}
   - component: {fileID: 33279965078096004}
-  - component: {fileID: 65676098669541108}
   - component: {fileID: 23228531818154734}
   m_Layer: 0
   m_Name: Cube
@@ -3103,7 +3100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1228098089651112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 2.5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 4, z: 40}
   m_Children: []
   m_Father: {fileID: 4385998785310912}
@@ -3846,7 +3843,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1779505604048498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4245862703908848}
@@ -4346,7 +4343,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734399124859646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: -2.5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 4, z: 40}
   m_Children: []
   m_Father: {fileID: 4385998785310912}
@@ -11106,18 +11103,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!65 &65316451656066986
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1215168007930194}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65585462852312862
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -11129,30 +11114,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65676098669541108
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1538199160277614}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65797226096023670
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1266562034394870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95345224356735948
 Animator:
@@ -11379,7 +11340,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.60784316, g: 0.49411765, b: 1, a: 1}
+  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   m_Intensity: 3
   m_Range: 7.51
   m_SpotAngle: 129.8
@@ -11416,7 +11377,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.60784316, g: 0.49411765, b: 1, a: 1}
+  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   m_Intensity: 3
   m_Range: 7.51
   m_SpotAngle: 129.8
@@ -11453,7 +11414,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.60784316, g: 0.49411765, b: 1, a: 1}
+  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   m_Intensity: 3
   m_Range: 7.51
   m_SpotAngle: 129.8
@@ -11490,7 +11451,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.60784316, g: 0.49411765, b: 1, a: 1}
+  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
   m_Intensity: 3
   m_Range: 7.51
   m_SpotAngle: 129.8

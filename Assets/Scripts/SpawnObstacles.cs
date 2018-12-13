@@ -7,16 +7,19 @@ public class SpawnObstacles : MonoBehaviour
 
 	public Transform obstacleParent;
     public Transform powerUpParent;
+    public Transform coinParent;
 	public GameObject tableSidePrefab;
 	public GameObject zombiePrefab;
 	public GameObject topObstaclePrefab;
     public GameObject powerUpOne;
     public GameObject powerUpTwo;
     public GameObject powerUpThree;
+    public GameObject coin;
     public float floorLength = 40f;
 	public int numberOfObstacles = 40;
 	public int spaceBetweenObstacles = 1;
     public float chanceOfPowerUp = 0.125f;
+    public float chanceOfCoin = 0.33f;
 
 
 	bool[] lastOpenSpots;
@@ -77,6 +80,25 @@ public class SpawnObstacles : MonoBehaviour
 			currentOpenSpots[i] = true;
 		}
 
+        //spawning coins
+        for(int i = 0; i < floorLength; i++)
+        {
+            // since we do not want to spawn coins on obstacles
+            if (i % spaceBetweenObstacles != 0)
+            {
+                // chance we spawn coin
+                if (Random.Range(0f, 1.00f) < chanceOfCoin)
+                {
+                    // lets spawn the coin on one of the six possibe
+                    int whichFloor = (int)(Random.Range(0f, 1.99f));
+                    int whichX = (int)(Random.Range(0f, 2.99f));
+                    // instantiate this coin at this location
+                    InstantiateCoin(whichX, i, whichFloor);
+                }
+            }
+        }
+
+        // spawning powerups
         for (int i = (int) (spaceBetweenObstacles / 2f); i < floorLength; i+= spaceBetweenObstacles)
         {
             // see if we want to spawn a power up
@@ -203,9 +225,16 @@ public class SpawnObstacles : MonoBehaviour
 			}
 		}
 
-
 		return true;
 	}
+
+    void InstantiateCoin(int xLocation, int yLocation, int whichFloor)
+    {
+        Instantiate(coin,
+                    new Vector3(startOfFloor.x + xLocation, whichFloor, startOfFloor.z + yLocation),
+                    coin.transform.localRotation,
+                    coinParent);
+    }
 
     void InstantiatePowerUp(int xLocation, int yLocation, int whichPowerUp)
     {

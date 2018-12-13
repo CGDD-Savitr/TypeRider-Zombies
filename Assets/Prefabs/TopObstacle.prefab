@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4962055972776236}
   - component: {fileID: 33953644016019110}
   - component: {fileID: 23829425230028674}
+  - component: {fileID: 65036088912643964}
   m_Layer: 0
   m_Name: tableWithTopObstacle
   m_TagString: Untagged
@@ -188,6 +189,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562213285141116}
   m_Mesh: {fileID: 4300000, guid: 1b019403d1cf5b44c838a25bc1fdaaad, type: 3}
+--- !u!65 &65036088912643964
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1562213285141116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 40}
 --- !u!65 &65483329854730086
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -198,7 +211,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.89, z: 0.5}
+  m_Size: {x: 0.4, y: 0.89, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114112235183330642
 MonoBehaviour:
