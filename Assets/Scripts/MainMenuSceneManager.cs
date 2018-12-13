@@ -11,6 +11,7 @@ public class MainMenuSceneManager : MonoBehaviour
 	void Start()
 	{
 		Time.timeScale = 1.0f;
+		Cursor.visible = true;
 	}
 
 	public void PlayGame()

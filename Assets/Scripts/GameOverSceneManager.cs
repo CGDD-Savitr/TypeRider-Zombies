@@ -15,6 +15,7 @@ public class GameOverSceneManager : MonoBehaviour {
 	void Awake()
 	{
 		ScoreText.text = "SCORE: " + CrossSceneRegistry.PlayerScore;
+		Cursor.visible = true;
 	}
 
 	public void PlayGame()

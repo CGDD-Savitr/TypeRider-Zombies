@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
 	{
 		player = Player.GetComponent<PlayerMovement>();
 		wordPool = GetComponent<WordPool>();
+		Cursor.visible = false;
 	}
 
 	void Start()
@@ -102,11 +103,13 @@ public class GameController : MonoBehaviour {
 		{
 			Time.timeScale = 0.0f;
 			SceneManagerObject.SendMessage("Pause");
+			Cursor.visible = true;
 		}
 		else
 		{
 			Time.timeScale = 1.0f;
 			SceneManagerObject.SendMessage("Unpause");
+			Cursor.visible = false;
 		}
 
 		paused = !paused;
