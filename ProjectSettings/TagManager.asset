@@ -18,6 +18,7 @@ TagManager:
   - PowerUpTwo
   - PowerUpThree
   - Coin
+  - FlyText
   layers:
   - Default
   - TransparentFX

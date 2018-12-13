@@ -8,9 +8,14 @@ public class PlayerCollisions : MonoBehaviour
     public GameObject scoreControllerObject;
 	public GameObject GameManager;
 	public GameObject DamageOverlay;
+
+	public GameObject HUDControllerObject;
+
     public int coinScore = 1000;
 
     private ScoreController scoreController;
+
+	private HUDController hudController;
 
 	Animator anim;
 	AudioSource audioSource;
@@ -20,6 +25,7 @@ public class PlayerCollisions : MonoBehaviour
 		anim = DamageOverlay.GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
         scoreController = scoreControllerObject.GetComponent<ScoreController>();
+		hudController = HUDControllerObject.GetComponent<HUDController>();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -53,6 +59,7 @@ public class PlayerCollisions : MonoBehaviour
                         return;
                     case "Coin":
                         scoreController.AddScore(coinScore);
+						hudController.FlashScore(coinScore);
                         Destroy(other.gameObject);
                         return;
                 }
