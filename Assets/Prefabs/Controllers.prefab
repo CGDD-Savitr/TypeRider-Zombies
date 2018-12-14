@@ -150,6 +150,7 @@ MonoBehaviour:
   DownKeyword: {fileID: 0}
   HighlightColor: green
   ErrorColor: red
+  MaxLength: 10
   Controls: {fileID: 0}
 --- !u!114 &114282090986084876
 MonoBehaviour:
@@ -188,9 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb353662b12c6f498f8cd3cc5a5900f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerOneDuration: 5
-  powerTwoDuration: 5
-  powerThreeDuration: 10
+  powerUpsParentUI: {fileID: 0}
+  PlayerBaseColor: {r: 0, g: 0.7490196, b: 0.7058824, a: 0}
+  PlayerTrailColor: {r: 0, g: 1, b: 0.9411765, a: 1}
+  PlayerMesh: {fileID: 0}
+  PlayerTrail: {fileID: 0}
 --- !u!114 &114482559246741912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +209,7 @@ MonoBehaviour:
   SceneManagerObject: {fileID: 1656611117615424}
   TypingControlsImage: {fileID: 0}
   PlayerInput: {fileID: 0}
-  PlayerHP: {fileID: 0}
+  PlayerHPSliderObject: {fileID: 0}
   MilestoneText: {fileID: 0}
   playerHP: 5
 --- !u!114 &114502102552234368

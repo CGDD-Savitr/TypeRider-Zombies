@@ -73,6 +73,39 @@ public class InputHandler : MonoBehaviour {
 
 	}
 
+	public void DisplayWASD()
+	{
+		keywords.ForEach(keyword =>
+		{
+			switch (keyword.Value)
+			{
+				case Direction.UP:
+					Debug.Log("Foo");
+					keyword.Text.text = "w";
+					break;
+				case Direction.DOWN:
+					keyword.Text.text = "s";
+					break;
+				case Direction.LEFT:
+					keyword.Text.text = "a";
+					break;
+				case Direction.RIGHT:
+					keyword.Text.text = "d";
+					break;
+			}
+			getQueuedWord(keyword).enabled = false;
+		});
+	}
+
+	public void DisplayKeyword()
+	{
+		keywords.ForEach(keyword => 
+		{
+			keyword.Text.text = keyword.Key;
+			getQueuedWord(keyword).enabled = true;
+		});
+	}
+
 	public void OnValueChanged(InputField field)
 	{
 		string value = field.text.ToString().ToLower();

@@ -11,8 +11,6 @@ public class GameController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject SceneManagerObject;
 
-	public GameObject TypingControlsImage;
-
 	public GameObject PlayerInput;
 
 	public GameObject PlayerHPSliderObject;
@@ -234,17 +232,15 @@ public class GameController : MonoBehaviour {
 	{
 		if (typingControls)
 		{
-			GetComponent<InputHandler>().enabled = false;
 			GetComponent<KeyboardControls>().enabled = true;
 			PlayerInput.GetComponent<InputField>().enabled = false;
-			TypingControlsImage.GetComponent<Image>().color = Color.gray;
+			GetComponent<InputHandler>().DisplayWASD();
 		}
 		else
 		{
-			GetComponent<InputHandler>().enabled = true;
 			GetComponent<KeyboardControls>().enabled = false;
 			PlayerInput.GetComponent<InputField>().enabled = true;
-			TypingControlsImage.GetComponent<Image>().color = Color.white;
+			GetComponent<InputHandler>().DisplayKeyword();
 		}
 		typingControls = !typingControls;
 	}

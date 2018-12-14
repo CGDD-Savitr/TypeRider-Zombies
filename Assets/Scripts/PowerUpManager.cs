@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TypeRider.Assets.Classes;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour {
 	bool[] isCountingPower;
 
 	public GameObject powerUpsParentUI;
+
+    public GameObject TypingControlsImage;
+
+    public Color PlayerBaseColor;
+
+    public Color PlayerTrailColor;
+
+    public MeshRenderer PlayerMesh;
+
+    public TrailRenderer PlayerTrail;
 
 	private int[] powerDurations;
 
@@ -36,8 +47,11 @@ public class PowerUpManager : MonoBehaviour {
             {
 				//done in playerCollisions script
 				powerUpUI.ActivatePower(0);
+                PlayerMesh.material.SetColor("_EmissionColor", Color.green);
+                PlayerTrail.startColor = Color.green;
 				isCountingPower[0] = true;
-                Invoke("DeactivatePowerOne", powerDurations[0]);
+                StartCoroutine(DeactivatePowerOneCo());
+                // Invoke("DeactivatePowerOne", powerDurations[0]);
             }
         }
         if (CrossSceneRegistry.ActivatedPower[1] == true)
@@ -56,14 +70,39 @@ public class PowerUpManager : MonoBehaviour {
             {
 				powerUpUI.ActivatePower(2);
 				controller.ToggleControls();
+                TypingControlsImage.GetComponent<Image>().color = Color.gray;
 				isCountingPower[2] = true;
-                Invoke("DeactivatePowerThree", powerDurations[2]);
+                StartCoroutine(DeactivatePowerThreeCo());
+                // Invoke("DeactivatePowerThree", powerDurations[2]);
             }
         }
     }
 
     void DeactivatePowerOne()
     {
+        CrossSceneRegistry.ActivatedPower[0] = false;
+		isCountingPower[0] = false;
+    }
+
+    IEnumerator DeactivatePowerOneCo()
+    {
+        // Color 
+        yield return new WaitForSeconds(powerDurations[0] * .8f);
+        int iters = 20;
+        for (int i = 0; i < iters; ++i)
+        {
+            if (i % 2 == 1)
+            {
+                PlayerMesh.material.SetColor("_EmissionColor", PlayerBaseColor);
+                PlayerTrail.startColor = PlayerTrailColor;
+            }
+            else
+            {
+                PlayerMesh.material.SetColor("_EmissionColor", Color.green);
+                PlayerTrail.startColor = Color.green;
+            }
+            yield return new WaitForSeconds((powerDurations[0] * .2f) / iters);
+        }
         CrossSceneRegistry.ActivatedPower[0] = false;
 		isCountingPower[0] = false;
     }
@@ -80,5 +119,25 @@ public class PowerUpManager : MonoBehaviour {
         controller.ToggleControls();
         CrossSceneRegistry.ActivatedPower[2] = false;
 		isCountingPower[2] = false;
+    }
+
+    IEnumerator DeactivatePowerThreeCo()
+    {
+        Image img = TypingControlsImage.GetComponent<Image>();
+        yield return new WaitForSeconds(powerDurations[2] * .8f);
+        int iters = 20;
+        for (int i = 0; i < iters; ++i)
+        {
+            if (i % 2 == 1)
+            {
+                img.color = Color.white;
+            }
+            else
+            {
+                img.color = Color.gray;
+            }
+            yield return new WaitForSeconds((powerDurations[2] * .2f) / iters);
+        }
+        controller.ToggleControls();
     }
 }
