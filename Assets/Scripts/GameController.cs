@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour {
 
 	Stack<int> milestones;
 
-	float damgeCooldown = 3f;
+	float damageCooldown = 1f;
 
 	bool canTakeDamage = true;
 
@@ -281,7 +281,20 @@ public class GameController : MonoBehaviour {
 	IEnumerator PlayerInvulnerable()
 	{
 		canTakeDamage = false;
-		yield return new WaitForSeconds(damgeCooldown);
+		Material mat = player.GetComponentInChildren<MeshRenderer>().material;
+		TrailRenderer trail = player.GetComponentInChildren<TrailRenderer>();
+		Color baseC = mat.GetColor("_EmissionColor");
+		Color trailC = trail.startColor;
+		mat.SetColor("_EmissionColor", Color.red);
+		trail.startColor = Color.red;
+		int iter = 10;
+		float t = damageCooldown / iter;
+		for (int i = 1; i < iter + 1; ++i)
+		{
+			mat.SetColor("_EmissionColor", Color.Lerp(Color.red, baseC, (t * i) / damageCooldown));
+			trail.startColor = Color.Lerp(Color.red, trailC, (t * i) / damageCooldown);
+			yield return new WaitForSeconds(t);
+		}
 		canTakeDamage = true;
 	}
 
