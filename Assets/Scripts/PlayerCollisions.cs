@@ -40,6 +40,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[0])
 						{
 							CrossSceneRegistry.CanUsePower[0] = true;
+							hudController.FlashPowerUp(0);
 							Destroy(other.gameObject);
 						}
                         return;
@@ -47,6 +48,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[1])
 						{
 							CrossSceneRegistry.CanUsePower[1] = true;
+							hudController.FlashPowerUp(1);
 							Destroy(other.gameObject);
 						}
                         return;
@@ -54,6 +56,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[2])
 						{
 							CrossSceneRegistry.CanUsePower[2] = true;
+							hudController.FlashPowerUp(2);
 							Destroy(other.gameObject);
 						}
                         return;

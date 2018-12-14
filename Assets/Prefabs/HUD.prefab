@@ -1714,7 +1714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlyTextObject: {fileID: 1383557426547894, guid: cee9e953ec0b2d5498c83b4e8d873797,
     type: 2}
-  ScoreTransform: {fileID: 224806614109515432}
 --- !u!114 &114451381588897862
 MonoBehaviour:
   m_ObjectHideFlags: 1
