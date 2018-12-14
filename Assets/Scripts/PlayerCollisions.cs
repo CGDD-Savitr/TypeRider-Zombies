@@ -17,6 +17,8 @@ public class PlayerCollisions : MonoBehaviour
 
 	private HUDController hudController;
 
+	private GameController gameController;
+
 	Animator anim;
 	AudioSource audioSource;
 
@@ -26,6 +28,7 @@ public class PlayerCollisions : MonoBehaviour
 		audioSource = GetComponent<AudioSource>();
         scoreController = scoreControllerObject.GetComponent<ScoreController>();
 		hudController = HUDControllerObject.GetComponent<HUDController>();
+		gameController = GameManager.GetComponent<GameController>();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -40,6 +43,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[0])
 						{
 							CrossSceneRegistry.CanUsePower[0] = true;
+							hudController.FlashPowerUp(0);
 							Destroy(other.gameObject);
 						}
                         return;
@@ -47,6 +51,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[1])
 						{
 							CrossSceneRegistry.CanUsePower[1] = true;
+							hudController.FlashPowerUp(1);
 							Destroy(other.gameObject);
 						}
                         return;
@@ -54,6 +59,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (!CrossSceneRegistry.ActivatedPower[2])
 						{
 							CrossSceneRegistry.CanUsePower[2] = true;
+							hudController.FlashPowerUp(2);
 							Destroy(other.gameObject);
 						}
                         return;
@@ -65,15 +71,17 @@ public class PlayerCollisions : MonoBehaviour
                 }
 
                 if (CrossSceneRegistry.ActivatedPower[0] == false){
-                    GameManager.SendMessage("TakeDamage");
-                    if (anim)
-                    {
-                        anim.SetTrigger("TakeDamage");
-                    }
-                    if (audioSource)
-                    {
-                        audioSource.Play();
-                    }
+					if (gameController.TakeDamage())
+					{
+						if (anim)
+						{
+							anim.SetTrigger("TakeDamage");
+						}
+						if (audioSource)
+						{
+							audioSource.Play();
+						}
+					}
                 }
                 
 			}
