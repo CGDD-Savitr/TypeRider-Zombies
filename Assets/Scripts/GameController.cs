@@ -40,6 +40,10 @@ public class GameController : MonoBehaviour {
 
 	Stack<int> milestones;
 
+	float damgeCooldown = 3f;
+
+	bool canTakeDamage = true;
+
 	int currentTarget;
 
 	void Awake()
@@ -87,11 +91,11 @@ public class GameController : MonoBehaviour {
 		{
 			TogglePause();
 		}
-		else if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale *= 2f;
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             Time.timeScale *= 0.5f;
         }
@@ -115,15 +119,24 @@ public class GameController : MonoBehaviour {
 		paused = !paused;
 	}
 
-	public void TakeDamage()
+	public bool TakeDamage()
 	{
-		playerHP--;
-		PlayerHPSlider.value = playerHP;
-
-		if (playerHP <= 0)
+		if (canTakeDamage)
 		{
-			Lose();
+			playerHP--;
+			PlayerHPSlider.value = playerHP;
+
+			if (playerHP <= 0)
+			{
+				Lose();
+			}
+			else
+			{
+				StartCoroutine(PlayerInvulnerable());
+			}
+			return true;
 		}
+		return false;
 	}
 
 	void Lose()
@@ -263,6 +276,13 @@ public class GameController : MonoBehaviour {
 
 		bf.Serialize(file, data);
 		file.Close();
+	}
+
+	IEnumerator PlayerInvulnerable()
+	{
+		canTakeDamage = false;
+		yield return new WaitForSeconds(damgeCooldown);
+		canTakeDamage = true;
 	}
 
 	enum Lane {
