@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TypeRider.Assets.Classes;
 
 public class SpawnObstacles : MonoBehaviour
 {
@@ -14,12 +15,20 @@ public class SpawnObstacles : MonoBehaviour
     public GameObject powerUpOne;
     public GameObject powerUpTwo;
     public GameObject powerUpThree;
+    public GameObject spaceUpperObstacle;
+    public GameObject spaceLowerObstacle;
+    public GameObject castleUpperObstacle;
+    public GameObject castleLowerObstacle;
+
     public GameObject coin;
+    private GameObject whichPrefab;
+
     public float floorLength = 40f;
 	public int numberOfObstacles = 40;
 	public int spaceBetweenObstacles = 1;
     public float chanceOfPowerUp = 0.125f;
     public float chanceOfCoin = 0.33f;
+    
 
 
 	bool[] lastOpenSpots;
@@ -41,7 +50,7 @@ public class SpawnObstacles : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerExit(Collider other)
 	{
 		switch (other.tag)
 		{
@@ -107,20 +116,21 @@ public class SpawnObstacles : MonoBehaviour
                 // which powerup
                 float whichPowerUp = Random.Range(0f, 1.00f);
                 int whichX = (int)Random.Range(0f, 2.99f);
+                int whichFloor = (int)Random.Range(0f, 1.99f);
                 // spawning powerup1
                 if (whichPowerUp < 0.33)
                 {
-                    InstantiatePowerUp(whichX, i, 0);
+                    InstantiatePowerUp(whichX, i, 0, whichFloor);
                 }
                 // spawning powerup2
                 else if (whichPowerUp < 0.66)
                 {
-                    InstantiatePowerUp(whichX, i, 1);
+                    InstantiatePowerUp(whichX, i, 1, whichFloor);
                 }
                 // spawning powerup3
                 else
                 {
-                    InstantiatePowerUp(whichX, i, 2);
+                    InstantiatePowerUp(whichX, i, 2, whichFloor);
                 }
             }
         }
@@ -236,9 +246,8 @@ public class SpawnObstacles : MonoBehaviour
                     coinParent);
     }
 
-    void InstantiatePowerUp(int xLocation, int yLocation, int whichPowerUp)
+    void InstantiatePowerUp(int xLocation, int yLocation, int whichPowerUp, int whichFloor)
     {
-        GameObject whichPrefab;
         switch(whichPowerUp)
         {
             case 0:
@@ -255,14 +264,14 @@ public class SpawnObstacles : MonoBehaviour
         }
 
         Instantiate(whichPrefab,
-                    new Vector3(startOfFloor.x + xLocation, 0f, startOfFloor.z + yLocation),
+                    new Vector3(startOfFloor.x + xLocation, whichFloor, startOfFloor.z + yLocation),
                     whichPrefab.transform.localRotation,
                     powerUpParent);
     }
 
 	void InstantiateAnObstacle(int xLocation, int yLocation, int typeOfObstacle)
 	{
-		if (typeOfObstacle == 0)//spawning zombie
+		if (typeOfObstacle == 0)//2 floor obstacle
 		{
 			Instantiate(zombiePrefab,
 					new Vector3(startOfFloor.x + xLocation, -0.5f, startOfFloor.z + yLocation),
@@ -271,16 +280,45 @@ public class SpawnObstacles : MonoBehaviour
 		}
 		else if (typeOfObstacle == 1) // spawning Lower obstacle
 		{
-			Instantiate(tableSidePrefab,
+            // if school
+            if (CrossSceneRegistry.WhichFloorType == 0)
+            {
+                whichPrefab = tableSidePrefab;
+            }
+            // if Castle
+            else if (CrossSceneRegistry.WhichFloorType == 1)
+            {
+                whichPrefab = castleLowerObstacle;
+            }
+            // else it is space
+            else
+            {
+                whichPrefab = spaceLowerObstacle;
+            }
+			Instantiate(whichPrefab,
 					new Vector3(startOfFloor.x + xLocation, 0f, startOfFloor.z + yLocation + 0.5f),
-					tableSidePrefab.transform.localRotation,
+                    whichPrefab.transform.localRotation,
 					obstacleParent);
 		}
 		else if (typeOfObstacle == 2) // spawning UpperObstacle
 		{
-			Instantiate(topObstaclePrefab,
+            if (CrossSceneRegistry.WhichFloorType == 0)
+            {
+                whichPrefab = topObstaclePrefab;
+            }
+            // if Castle
+            else if (CrossSceneRegistry.WhichFloorType == 1)
+            {
+                whichPrefab = castleUpperObstacle;
+            }
+            // else it is space
+            else
+            {
+                whichPrefab = spaceUpperObstacle;
+            }
+            Instantiate(whichPrefab,
 					new Vector3(startOfFloor.x + xLocation, 1.0f, startOfFloor.z + yLocation),
-					topObstaclePrefab.transform.localRotation,
+					whichPrefab.transform.localRotation,
 					obstacleParent);
 		}
 	}

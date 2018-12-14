@@ -8,12 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main Menu.unity
     guid: 37d8a9295c973d447b94f4b92746f385
-  - enabled: 0
-    path: Assets/Daniel.unity
-    guid: 6b133142d29bfc04788e504bfd7a6c96
   - enabled: 1
     path: Assets/main.unity
-    guid: 470c4f96ddec077419bc4ff8c8fb0e7d
+    guid: 9d3bc156698b85242b5a242c83ededdd
   - enabled: 1
     path: Assets/Game Over.unity
     guid: f2a1b032dda5ce747af503a136ade2b6
