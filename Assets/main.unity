@@ -157,6 +157,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1489687879919720, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
     type: 2}
   m_PrefabInternal: {fileID: 1046001686}
+--- !u!224 &63165816 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224806614109515432, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1046001686}
 --- !u!114 &108577000 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
@@ -441,6 +446,11 @@ Prefab:
       propertyPath: DamageOverlay
       value: 
       objectReference: {fileID: 1808088038}
+    - target: {fileID: 114768439602569974, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: HUDControllerObject
+      value: 
+      objectReference: {fileID: 1071092574}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c56060f95d2c9468e297dd78032910, type: 2}
   m_IsPrefabAsset: 0
@@ -763,9 +773,24 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114444023406018564, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+        type: 2}
+      propertyPath: ScoreTransform
+      value: 
+      objectReference: {fileID: 63165816}
+    - target: {fileID: 114444023406018564, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+        type: 2}
+      propertyPath: PowerupTransform
+      value: 
+      objectReference: {fileID: 1792935240}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 801ba7c4d5291074481f7e2f8fcf33c4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1071092574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1612875008501588, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1046001686}
 --- !u!4 &1095792037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4008452392826386, guid: 43b5d29225aa13143a01b7c5d31f7803,
@@ -852,6 +877,11 @@ Transform:
 --- !u!1 &1792935239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1033092352910242, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1046001686}
+--- !u!224 &1792935240 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224307060180547568, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
     type: 2}
   m_PrefabInternal: {fileID: 1046001686}
 --- !u!1 &1808088038 stripped
