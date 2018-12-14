@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour {
 		player = Player.GetComponent<PlayerMovement>();
 		wordPool = GetComponent<WordPool>();
 		Cursor.visible = false;
+		wordLength = wordPool.ShortestWordLength;
 	}
 
 	void Start()
@@ -61,7 +62,6 @@ public class GameController : MonoBehaviour {
 		PlayerHPSlider.maxValue = playerHP;
 		PlayerHPSlider.value = playerHP;
 
-		wordLength = wordPool.ShortestWordLength;
 		milestones = new Stack<int>(CrossSceneRegistry.HighScores);
 	}
 
