@@ -40,6 +40,10 @@ public class GameController : MonoBehaviour {
 
 	Stack<int> milestones;
 
+	float damageCooldown = 1f;
+
+	bool canTakeDamage = true;
+
 	int currentTarget;
 
 	void Awake()
@@ -87,11 +91,11 @@ public class GameController : MonoBehaviour {
 		{
 			TogglePause();
 		}
-		else if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale *= 2f;
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             Time.timeScale *= 0.5f;
         }
@@ -115,15 +119,24 @@ public class GameController : MonoBehaviour {
 		paused = !paused;
 	}
 
-	public void TakeDamage()
+	public bool TakeDamage()
 	{
-		playerHP--;
-		PlayerHPSlider.value = playerHP;
-
-		if (playerHP <= 0)
+		if (canTakeDamage)
 		{
-			Lose();
+			playerHP--;
+			PlayerHPSlider.value = playerHP;
+
+			if (playerHP <= 0)
+			{
+				Lose();
+			}
+			else
+			{
+				StartCoroutine(PlayerInvulnerable());
+			}
+			return true;
 		}
+		return false;
 	}
 
 	void Lose()
@@ -263,6 +276,26 @@ public class GameController : MonoBehaviour {
 
 		bf.Serialize(file, data);
 		file.Close();
+	}
+
+	IEnumerator PlayerInvulnerable()
+	{
+		canTakeDamage = false;
+		Material mat = player.GetComponentInChildren<MeshRenderer>().material;
+		TrailRenderer trail = player.GetComponentInChildren<TrailRenderer>();
+		Color baseC = mat.GetColor("_EmissionColor");
+		Color trailC = trail.startColor;
+		mat.SetColor("_EmissionColor", Color.red);
+		trail.startColor = Color.red;
+		int iter = 10;
+		float t = damageCooldown / iter;
+		for (int i = 1; i < iter + 1; ++i)
+		{
+			mat.SetColor("_EmissionColor", Color.Lerp(Color.red, baseC, (t * i) / damageCooldown));
+			trail.startColor = Color.Lerp(Color.red, trailC, (t * i) / damageCooldown);
+			yield return new WaitForSeconds(t);
+		}
+		canTakeDamage = true;
 	}
 
 	enum Lane {
