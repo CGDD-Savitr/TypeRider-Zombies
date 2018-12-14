@@ -163,6 +163,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224806614109515432, guid: 801ba7c4d5291074481f7e2f8fcf33c4,
     type: 2}
   m_PrefabInternal: {fileID: 1046001686}
+--- !u!23 &79094741 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23197668324951212, guid: 57c56060f95d2c9468e297dd78032910,
+    type: 2}
+  m_PrefabInternal: {fileID: 700588581}
 --- !u!114 &108577000 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
@@ -502,6 +507,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1995347973129194, guid: 8198f4b712433af41872304543c83c17,
     type: 2}
   m_PrefabInternal: {fileID: 2061152987}
+--- !u!96 &776416003 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 96643533725365078, guid: 57c56060f95d2c9468e297dd78032910,
+    type: 2}
+  m_PrefabInternal: {fileID: 700588581}
 --- !u!1001 &896365842
 Prefab:
   m_ObjectHideFlags: 0
@@ -1168,6 +1178,21 @@ Prefab:
       propertyPath: PlayerHPSliderObject
       value: 
       objectReference: {fileID: 209059045}
+    - target: {fileID: 114388257953947000, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: PlayerMesh
+      value: 
+      objectReference: {fileID: 79094741}
+    - target: {fileID: 114388257953947000, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: PlayerTrail
+      value: 
+      objectReference: {fileID: 776416003}
+    - target: {fileID: 114388257953947000, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: TypingControlsImage
+      value: 
+      objectReference: {fileID: 2101957449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8198f4b712433af41872304543c83c17, type: 2}
   m_IsPrefabAsset: 0
