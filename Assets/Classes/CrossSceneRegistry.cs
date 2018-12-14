@@ -77,9 +77,22 @@ namespace TypeRider.Assets.Classes
 			}
 		}
 
+        public static int WhichFloorType
+        {
+            get
+            {
+                return whichFloorType;
+            }
+            set
+            {
+                whichFloorType = value;
+            }
+        }
+
 		private static IDifficulty difficulty = new NormalDifficulty();
 
         private static int playerScore = 0;
+        private static int whichFloorType = 0;
 
         private static List<int> highScores = new List<int>();
 

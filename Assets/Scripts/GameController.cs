@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour {
         {
             Time.timeScale *= 2f;
         }
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             Time.timeScale *= 0.5f;
