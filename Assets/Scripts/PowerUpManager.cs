@@ -13,7 +13,11 @@ public class PowerUpManager : MonoBehaviour {
 
     public Color PlayerBaseColor;
 
-    public Color PlayerTrailColor;
+    public AudioSource AudioSource;
+
+    public AudioClip ActivatePowerupSound;
+
+    public AudioClip EndPowerupSound;
 
     public MeshRenderer PlayerMesh;
 
@@ -24,10 +28,13 @@ public class PowerUpManager : MonoBehaviour {
     GameController controller;
 	PowerUpUI powerUpUI;
 
+    Color PlayerTrailColor;
+
     void Awake()
     {
         controller = FindObjectOfType<GameController>();
 		powerUpUI = powerUpsParentUI.GetComponent<PowerUpUI>();
+        PlayerTrailColor = PlayerTrail.startColor;
 	}
 	// Use this for initialization
 	void Start () {
@@ -47,6 +54,8 @@ public class PowerUpManager : MonoBehaviour {
             {
 				//done in playerCollisions script
 				powerUpUI.ActivatePower(0);
+                if (AudioSource && ActivatePowerupSound)
+                    AudioSource.PlayOneShot(ActivatePowerupSound);
                 PlayerMesh.material.SetColor("_EmissionColor", Color.green);
                 PlayerTrail.startColor = Color.green;
 				isCountingPower[0] = true;
@@ -59,9 +68,12 @@ public class PowerUpManager : MonoBehaviour {
             if (!isCountingPower[1])
             {
 				powerUpUI.ActivatePower(1);
+                if (AudioSource && ActivatePowerupSound)
+                    AudioSource.PlayOneShot(ActivatePowerupSound);
 				Time.timeScale *= 0.5f;
 				isCountingPower[1] = true;
-                Invoke("DeactivatePowerTwo", powerDurations[1]);
+                StartCoroutine(DeactivatePowerTwoCo());
+                // Invoke("DeactivatePowerTwo", powerDurations[1]);
             }
         }
         if (CrossSceneRegistry.ActivatedPower[2] == true)
@@ -69,6 +81,8 @@ public class PowerUpManager : MonoBehaviour {
             if (!isCountingPower[2])
             {
 				powerUpUI.ActivatePower(2);
+                if (AudioSource && ActivatePowerupSound)
+                    AudioSource.PlayOneShot(ActivatePowerupSound);
 				controller.ToggleControls();
                 TypingControlsImage.GetComponent<Image>().color = Color.gray;
 				isCountingPower[2] = true;
@@ -82,12 +96,16 @@ public class PowerUpManager : MonoBehaviour {
     {
         CrossSceneRegistry.ActivatedPower[0] = false;
 		isCountingPower[0] = false;
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
     }
 
     IEnumerator DeactivatePowerOneCo()
     {
         // Color 
         yield return new WaitForSeconds(powerDurations[0] * .8f);
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
         int iters = 20;
         for (int i = 0; i < iters; ++i)
         {
@@ -112,6 +130,8 @@ public class PowerUpManager : MonoBehaviour {
         Time.timeScale *= 2;
         CrossSceneRegistry.ActivatedPower[1] = false;
 		isCountingPower[1] = false;
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
     }
 
     void DeactivatePowerThree()
@@ -119,25 +139,38 @@ public class PowerUpManager : MonoBehaviour {
         controller.ToggleControls();
         CrossSceneRegistry.ActivatedPower[2] = false;
 		isCountingPower[2] = false;
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
+    }
+
+    IEnumerator DeactivatePowerTwoCo()
+    {
+        yield return new WaitForSeconds(powerDurations[1] * .8f);
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
+        yield return new WaitForSeconds(powerDurations[1] * .2f);
+        Time.timeScale *= 2;
+        CrossSceneRegistry.ActivatedPower[1] = false;
+		isCountingPower[1] = false;
     }
 
     IEnumerator DeactivatePowerThreeCo()
     {
         Image img = TypingControlsImage.GetComponent<Image>();
         yield return new WaitForSeconds(powerDurations[2] * .8f);
+        if (AudioSource && EndPowerupSound)
+            AudioSource.PlayOneShot(EndPowerupSound);
         int iters = 20;
         for (int i = 0; i < iters; ++i)
         {
             if (i % 2 == 1)
-            {
                 img.color = Color.white;
-            }
             else
-            {
                 img.color = Color.gray;
-            }
             yield return new WaitForSeconds((powerDurations[2] * .2f) / iters);
         }
         controller.ToggleControls();
+        CrossSceneRegistry.ActivatedPower[2] = false;
+		isCountingPower[2] = false;
     }
 }

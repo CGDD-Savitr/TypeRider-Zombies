@@ -24,6 +24,12 @@ public class InputHandler : MonoBehaviour {
 
 	public GameObject Controls;
 
+	public AudioSource AudioSource;
+
+	public AudioClip InputSuccessSound;
+
+	public AudioClip InputErrorSound;
+
 	GameController controller;
 
 	List<Keyword> keywords;
@@ -80,7 +86,6 @@ public class InputHandler : MonoBehaviour {
 			switch (keyword.Value)
 			{
 				case Direction.UP:
-					Debug.Log("Foo");
 					keyword.Text.text = "w";
 					break;
 				case Direction.DOWN:
@@ -161,10 +166,15 @@ public class InputHandler : MonoBehaviour {
 			string old = keyword.Key;
 			queuedWord.text = controller.NextWord(old);
 			keyword.Key = keyword.Text.text;
+			if (AudioSource && InputSuccessSound)
+				AudioSource.PlayOneShot(InputSuccessSound);
 		}
-		else if (animator)
+		else if (Input.GetKeyDown(KeyCode.Return))
 		{
-			animator.Play("uiError", -1, 0f);
+			if (animator)
+				animator.Play("uiError", -1, 0f);
+			if (AudioSource && InputErrorSound)
+				AudioSource.PlayOneShot(InputErrorSound);
 		}
 		clearHighlights();
 		field.text = "";

@@ -32,7 +32,7 @@ namespace TypeRider.Assets.Classes
         {
             get
             {
-                return 10000;
+                return 20000;
             }
         }
 
