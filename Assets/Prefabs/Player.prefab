@@ -631,8 +631,13 @@ MonoBehaviour:
   GameManager: {fileID: 0}
   DamageOverlay: {fileID: 0}
   HUDControllerObject: {fileID: 0}
+  PowerupParticlePrefab: {fileID: 1692738424532104, guid: 79110fb95ff31f941bbce4f9ede3caae,
+    type: 2}
+  CoinParticlePrefab: {fileID: 1114605348741308, guid: e188f251d22fec54b9538a49e7cc878f,
+    type: 2}
   CoinSound: {fileID: 8300000, guid: e7766fdd07212714cae001c83f58e867, type: 3}
   PowerupPickupSound: {fileID: 8300000, guid: 7620c3e8bec90d64c816adb868c4d996, type: 3}
+  powerupScore: 1000
   coinScore: 1000
 --- !u!135 &135468323609854846
 SphereCollider:

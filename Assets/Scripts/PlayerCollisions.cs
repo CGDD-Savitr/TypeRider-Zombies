@@ -11,6 +11,10 @@ public class PlayerCollisions : MonoBehaviour
 
 	public GameObject HUDControllerObject;
 
+	public GameObject PowerupParticlePrefab;
+
+	public GameObject CoinParticlePrefab;
+
 	public AudioClip CoinSound;
 
 	public AudioClip PowerupPickupSound;
@@ -59,6 +63,8 @@ public class PlayerCollisions : MonoBehaviour
 						}
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
+						if (PowerupParticlePrefab)
+							Instantiate(PowerupParticlePrefab, other.transform.position, Quaternion.identity);
 						Destroy(other.gameObject);
                         return;
                     case "PowerUpTwo":
@@ -75,6 +81,8 @@ public class PlayerCollisions : MonoBehaviour
 						}
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
+						if (PowerupParticlePrefab)
+							Instantiate(PowerupParticlePrefab, other.transform.position, Quaternion.identity);
 						Destroy(other.gameObject);
                         return;
                     case "PowerUpThree":
@@ -91,6 +99,8 @@ public class PlayerCollisions : MonoBehaviour
 						}
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
+						if (PowerupParticlePrefab)
+							Instantiate(PowerupParticlePrefab, other.transform.position, Quaternion.identity);
 						Destroy(other.gameObject);
                         return;
                     case "Coin":
@@ -98,6 +108,8 @@ public class PlayerCollisions : MonoBehaviour
 						hudController.FlashScore(coinScore);
 						if (audioSource && CoinSound)
 							audioSource.PlayOneShot(CoinSound);
+						if (CoinParticlePrefab)
+							Instantiate(CoinParticlePrefab, other.transform.position, Quaternion.identity);
                         Destroy(other.gameObject);
                         return;
                 }
