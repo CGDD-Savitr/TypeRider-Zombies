@@ -56,8 +56,8 @@ public class PowerUpManager : MonoBehaviour {
 				powerUpUI.ActivatePower(0);
                 if (AudioSource && ActivatePowerupSound)
                     AudioSource.PlayOneShot(ActivatePowerupSound);
-                PlayerMesh.material.SetColor("_EmissionColor", Color.green);
-                PlayerTrail.startColor = Color.green;
+                PlayerMesh.material.SetColor("_EmissionColor", Color.white);
+                PlayerTrail.startColor = Color.white;
 				isCountingPower[0] = true;
                 StartCoroutine(DeactivatePowerOneCo());
                 // Invoke("DeactivatePowerOne", powerDurations[0]);
@@ -116,8 +116,8 @@ public class PowerUpManager : MonoBehaviour {
             }
             else
             {
-                PlayerMesh.material.SetColor("_EmissionColor", Color.green);
-                PlayerTrail.startColor = Color.green;
+                PlayerMesh.material.SetColor("_EmissionColor", Color.white);
+                PlayerTrail.startColor = Color.white;
             }
             yield return new WaitForSeconds((powerDurations[0] * .2f) / iters);
         }
