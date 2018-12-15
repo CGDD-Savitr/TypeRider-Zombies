@@ -24,6 +24,10 @@ public class InputHandler : MonoBehaviour {
 
 	public GameObject Controls;
 
+	public AudioSource AudioSource;
+
+	public AudioClip InputSuccessSound;
+
 	GameController controller;
 
 	List<Keyword> keywords;
@@ -160,6 +164,8 @@ public class InputHandler : MonoBehaviour {
 			string old = keyword.Key;
 			queuedWord.text = controller.NextWord(old);
 			keyword.Key = keyword.Text.text;
+			if (AudioSource && InputSuccessSound)
+				AudioSource.PlayOneShot(InputSuccessSound);
 		}
 		else if (animator)
 		{

@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour {
 	public GameObject PlayerInput;
 
 	public GameObject PlayerHPSliderObject;
+
+	public AudioClip PowerupActivateSound;
+
 	Slider PlayerHPSlider;
 
 	public Text MilestoneText;
@@ -44,9 +47,12 @@ public class GameController : MonoBehaviour {
 
 	int currentTarget;
 
+	AudioSource pas;
+
 	void Awake()
 	{
 		player = Player.GetComponent<PlayerMovement>();
+		pas = Player.GetComponentInChildren<AudioSource>();
 		wordPool = GetComponent<WordPool>();
 		Cursor.visible = false;
 	}
@@ -227,6 +233,8 @@ public class GameController : MonoBehaviour {
 		{
 			CrossSceneRegistry.ActivatedPower[powerup] = true;
 			CrossSceneRegistry.CanUsePower[powerup] = false;
+			if (pas && PowerupActivateSound)
+				pas.PlayOneShot(PowerupActivateSound);
 		}
 	}
 
