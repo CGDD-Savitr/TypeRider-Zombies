@@ -475,6 +475,31 @@ Prefab:
       propertyPath: laneChangeVelocity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114768439602569974, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: CoinSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 53e55dcc474548847ae995a68da82769, type: 3}
+    - target: {fileID: 114768439602569974, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: PowerupPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 96307e2b945e1b74bb4b97398a44700f, type: 3}
+    - target: {fileID: 82071326360063842, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 167797547288876600, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82071326360063842, guid: 57c56060f95d2c9468e297dd78032910,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c56060f95d2c9468e297dd78032910, type: 2}
   m_IsPrefabAsset: 0
@@ -1164,6 +1189,16 @@ Prefab:
       propertyPath: AudioSource
       value: 
       objectReference: {fileID: 43243890}
+    - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: InputErrorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 53f48684e9af9e0488e730837c91109f, type: 3}
+    - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
+      propertyPath: InputSuccessSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bc1d24561661f784e923ffd72d85984b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8198f4b712433af41872304543c83c17, type: 2}
   m_IsPrefabAsset: 0
