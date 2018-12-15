@@ -1101,6 +1101,11 @@ Prefab:
       objectReference: {fileID: 2101957449}
     - target: {fileID: 114388257953947000, guid: 8198f4b712433af41872304543c83c17,
         type: 2}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 43243890}
+    - target: {fileID: 114388257953947000, guid: 8198f4b712433af41872304543c83c17,
+        type: 2}
       propertyPath: PlayerMesh
       value: 
       objectReference: {fileID: 79094741}
@@ -1149,11 +1154,6 @@ Prefab:
       propertyPath: AudioSource
       value: 
       objectReference: {fileID: 43243890}
-    - target: {fileID: 114076516150926628, guid: 8198f4b712433af41872304543c83c17,
-        type: 2}
-      propertyPath: InputErrorSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2b18ea515cc663044983c8fd9d819ab9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8198f4b712433af41872304543c83c17, type: 2}
   m_IsPrefabAsset: 0
