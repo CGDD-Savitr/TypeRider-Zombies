@@ -8,7 +8,7 @@ namespace TypeRider.Assets.Classes
         {
             get
             {
-                return 1.25f;
+                return 1.5f;
             }
         }
 
@@ -40,7 +40,7 @@ namespace TypeRider.Assets.Classes
         {
             get
             {
-                return 1.5f;
+                return 1.25f;
             }
         }
     }
