@@ -140,5 +140,7 @@ public class PowerUpManager : MonoBehaviour {
             yield return new WaitForSeconds((powerDurations[2] * .2f) / iters);
         }
         controller.ToggleControls();
+        CrossSceneRegistry.ActivatedPower[2] = false;
+		isCountingPower[2] = false;
     }
 }
