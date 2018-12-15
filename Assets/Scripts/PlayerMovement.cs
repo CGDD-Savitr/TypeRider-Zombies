@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
 		currentSpeed = forwardVector.z;
 	}
 
-	private void Update()
+	void Update()
 	{
 		forwardVector.z += currentDifficulty * Time.deltaTime * 0.01f;
 		changeLaneVectorLeft.z += currentDifficulty * Time.deltaTime * 0.01f;
@@ -48,6 +48,14 @@ public class PlayerMovement : MonoBehaviour {
 		changeLaneVectorUp.z += currentDifficulty * Time.deltaTime * 0.01f;
 		changeLaneVectorDown.z += currentDifficulty * Time.deltaTime * 0.01f;
 		currentSpeed = forwardVector.z;
+	}
+
+	void FixedUpdate()
+	{
+		if (!moving)
+		{
+			rigid.velocity = forwardVector;
+		}
 	}
 
 	public void MoveLeft()
