@@ -152,6 +152,9 @@ MonoBehaviour:
   ErrorColor: red
   MaxLength: 10
   Controls: {fileID: 0}
+  AudioSource: {fileID: 0}
+  InputSuccessSound: {fileID: 8300000, guid: 9e0525414e5bd5c42af9ae7322e65cad, type: 3}
+  InputErrorSound: {fileID: 0}
 --- !u!114 &114282090986084876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,8 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpsParentUI: {fileID: 0}
+  TypingControlsImage: {fileID: 0}
   PlayerBaseColor: {r: 0, g: 0.7490196, b: 0.7058824, a: 0}
-  PlayerTrailColor: {r: 0, g: 1, b: 0.9411765, a: 1}
   PlayerMesh: {fileID: 0}
   PlayerTrail: {fileID: 0}
 --- !u!114 &114482559246741912
@@ -207,9 +210,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   SceneManagerObject: {fileID: 1656611117615424}
-  TypingControlsImage: {fileID: 0}
   PlayerInput: {fileID: 0}
   PlayerHPSliderObject: {fileID: 0}
+  PowerupActivateSound: {fileID: 8300000, guid: f9ab2d8138e0cf04a8eda44d27256244,
+    type: 3}
   MilestoneText: {fileID: 0}
   playerHP: 5
 --- !u!114 &114502102552234368

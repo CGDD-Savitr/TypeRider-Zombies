@@ -28,6 +28,8 @@ public class InputHandler : MonoBehaviour {
 
 	public AudioClip InputSuccessSound;
 
+	public AudioClip InputErrorSound;
+
 	GameController controller;
 
 	List<Keyword> keywords;
@@ -167,9 +169,12 @@ public class InputHandler : MonoBehaviour {
 			if (AudioSource && InputSuccessSound)
 				AudioSource.PlayOneShot(InputSuccessSound);
 		}
-		else if (animator)
+		else if (Input.GetKeyDown(KeyCode.Return))
 		{
-			animator.Play("uiError", -1, 0f);
+			if (animator)
+				animator.Play("uiError", -1, 0f);
+			if (AudioSource && InputErrorSound)
+				AudioSource.PlayOneShot(InputErrorSound);
 		}
 		clearHighlights();
 		field.text = "";
