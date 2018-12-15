@@ -45,30 +45,24 @@ public class PlayerCollisions : MonoBehaviour
                 {
                     case "PowerUpOne":
 						if (!CrossSceneRegistry.ActivatedPower[0])
-						{
 							CrossSceneRegistry.CanUsePower[0] = true;
-							hudController.FlashPowerUp(0);
-						}
+						hudController.FlashPowerUp(0);
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
 						Destroy(other.gameObject);
                         return;
                     case "PowerUpTwo":
 						if (!CrossSceneRegistry.ActivatedPower[1])
-						{
 							CrossSceneRegistry.CanUsePower[1] = true;
-							hudController.FlashPowerUp(1);
-						}
+						hudController.FlashPowerUp(1);
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
 						Destroy(other.gameObject);
                         return;
                     case "PowerUpThree":
 						if (!CrossSceneRegistry.ActivatedPower[2])
-						{
 							CrossSceneRegistry.CanUsePower[2] = true;
-							hudController.FlashPowerUp(2);
-						}
+						hudController.FlashPowerUp(2);
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
 						Destroy(other.gameObject);

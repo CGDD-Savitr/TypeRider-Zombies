@@ -154,7 +154,7 @@ MonoBehaviour:
   Controls: {fileID: 0}
   AudioSource: {fileID: 0}
   InputSuccessSound: {fileID: 8300000, guid: 9e0525414e5bd5c42af9ae7322e65cad, type: 3}
-  InputErrorSound: {fileID: 0}
+  InputErrorSound: {fileID: 8300000, guid: 2b18ea515cc663044983c8fd9d819ab9, type: 3}
 --- !u!114 &114282090986084876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +195,10 @@ MonoBehaviour:
   powerUpsParentUI: {fileID: 0}
   TypingControlsImage: {fileID: 0}
   PlayerBaseColor: {r: 0, g: 0.7490196, b: 0.7058824, a: 0}
+  AudioSource: {fileID: 0}
+  ActivatePowerupSound: {fileID: 8300000, guid: f9ab2d8138e0cf04a8eda44d27256244,
+    type: 3}
+  EndPowerupSound: {fileID: 8300000, guid: 8dfc5dcef141f754ca304b8e408f035d, type: 3}
   PlayerMesh: {fileID: 0}
   PlayerTrail: {fileID: 0}
 --- !u!114 &114482559246741912
