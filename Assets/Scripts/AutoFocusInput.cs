@@ -27,7 +27,6 @@ public class AutoFocusInput : MonoBehaviour {
 	{
 		if (!inputField.isFocused)
 		{
-			Debug.Log("PlayerInput selected");
 			inputField.Select();
 			inputField.ActivateInputField();
 			inputField.text = "";

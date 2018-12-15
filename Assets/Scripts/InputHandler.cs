@@ -80,7 +80,6 @@ public class InputHandler : MonoBehaviour {
 			switch (keyword.Value)
 			{
 				case Direction.UP:
-					Debug.Log("Foo");
 					keyword.Text.text = "w";
 					break;
 				case Direction.DOWN:

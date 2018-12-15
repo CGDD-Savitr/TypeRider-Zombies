@@ -13,8 +13,6 @@ public class PowerUpManager : MonoBehaviour {
 
     public Color PlayerBaseColor;
 
-    public Color PlayerTrailColor;
-
     public MeshRenderer PlayerMesh;
 
     public TrailRenderer PlayerTrail;
@@ -24,10 +22,13 @@ public class PowerUpManager : MonoBehaviour {
     GameController controller;
 	PowerUpUI powerUpUI;
 
+    Color PlayerTrailColor;
+
     void Awake()
     {
         controller = FindObjectOfType<GameController>();
 		powerUpUI = powerUpsParentUI.GetComponent<PowerUpUI>();
+        PlayerTrailColor = PlayerTrail.startColor;
 	}
 	// Use this for initialization
 	void Start () {
