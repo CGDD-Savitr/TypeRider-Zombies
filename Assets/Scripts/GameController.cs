@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour {
 	public GameObject PlayerInput;
 
 	public GameObject PlayerHPSliderObject;
+
+	public AudioClip PowerupActivateSound;
+
 	Slider PlayerHPSlider;
 
 	public Text MilestoneText;
@@ -32,7 +35,7 @@ public class GameController : MonoBehaviour {
 
 	Lane playerLane = Lane.BOTTOM_MIDDLE;
 
-	int wordLength = 5;
+	int wordLength = 0;
 
 	bool typingControls = true;
 
@@ -49,7 +52,6 @@ public class GameController : MonoBehaviour {
 		player = Player.GetComponent<PlayerMovement>();
 		wordPool = GetComponent<WordPool>();
 		Cursor.visible = false;
-		wordLength = wordPool.ShortestWordLength;
 	}
 
 	void Start()
@@ -175,6 +177,8 @@ public class GameController : MonoBehaviour {
 
 	public string NextWord()
 	{
+		if (wordLength == 0)
+			wordLength = wordPool.ShortestWordLength;
 		return wordPool.GetWord(wordLength);
 	}
 
@@ -288,8 +292,10 @@ public class GameController : MonoBehaviour {
 		float t = damageCooldown / iter;
 		for (int i = 1; i < iter + 1; ++i)
 		{
-			mat.SetColor("_EmissionColor", Color.Lerp(Color.red, baseC, (t * i) / damageCooldown));
-			trail.startColor = Color.Lerp(Color.red, trailC, (t * i) / damageCooldown);
+			Color transitionColor = CrossSceneRegistry.ActivatedPower[0] ? Color.green : baseC;
+			Color tailTransitionColor = CrossSceneRegistry.ActivatedPower[0] ? Color.green : trailC;
+			mat.SetColor("_EmissionColor", Color.Lerp(Color.red, transitionColor, (t * i) / damageCooldown));
+			trail.startColor = Color.Lerp(Color.red, tailTransitionColor, (t * i) / damageCooldown);
 			yield return new WaitForSeconds(t);
 		}
 		canTakeDamage = true;

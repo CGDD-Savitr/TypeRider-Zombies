@@ -11,6 +11,7 @@ namespace TypeRider.Assets.Classes
         public Direction Value { get; set; }
 
     }
+    
     public enum Direction
     {
         UP,
