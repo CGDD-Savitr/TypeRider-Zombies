@@ -29,14 +29,13 @@ public class PrintHighScores : MonoBehaviour {
 			scores = data.scores;
 		}
 
-		//sorted by score
-		scores.Sort((x, y) => -(x.Score.CompareTo(y.Score)));
-		leftList.text = "HIGH SCORES:\n" + string.Join("\n", scores.Select(score => score.ToString()).ToArray());
 		//sorted by date
 		scores.Sort((x, y) => -(x.Timestamp.CompareTo(y.Timestamp)));
 		rightList.text = "RECENT SCORES:\n" + string.Join("\n", scores.Select(score => score.ToString()).ToArray());
 
-
+		//sorted by score
+		scores.Sort((x, y) => -(x.Score.CompareTo(y.Score)));
+		leftList.text = "HIGH SCORES:\n" + string.Join("\n", scores.Select(score => score.ToString()).ToArray());
 
 		CrossSceneRegistry.HighScores = scores.Select(score => score.Score).ToList().GetRange(0, Mathf.Min(scores.Count, 20));
 	}
