@@ -100,7 +100,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (audioSource && PowerupPickupSound)
 							audioSource.PlayOneShot(PowerupPickupSound);
 						if (PowerupParticlePrefab)
-							Instantiate(PowerupParticlePrefab, other.transform.position, Quaternion.identity);
+							Instantiate(PowerupParticlePrefab, other.transform.position, Quaternion.identity, transform);
 						Destroy(other.gameObject);
                         return;
                     case "Coin":
@@ -109,7 +109,7 @@ public class PlayerCollisions : MonoBehaviour
 						if (audioSource && CoinSound)
 							audioSource.PlayOneShot(CoinSound);
 						if (CoinParticlePrefab)
-							Instantiate(CoinParticlePrefab, other.transform.position, Quaternion.identity);
+							Instantiate(CoinParticlePrefab, other.transform.position, Quaternion.identity, transform);
                         Destroy(other.gameObject);
                         return;
                 }

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4080371004161016}
   - component: {fileID: 33076635333063316}
   - component: {fileID: 23641073235824668}
+  - component: {fileID: 114545495650262332}
   m_Layer: 0
   m_Name: Cube.002
   m_TagString: Untagged
@@ -70,6 +71,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4570392637198618}
+  - component: {fileID: 95810850028449616}
+  - component: {fileID: 114150523384351748}
   m_Layer: 0
   m_Name: hangingLightblend
   m_TagString: Untagged
@@ -300,3 +303,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.89, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95810850028449616
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775062016980952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f456b8e345016f24cb6e4ad372da70ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114150523384351748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775062016980952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0581751184f640d43869f530313e3d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114545495650262332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1419016409955248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2ebbacd3525774f9d833ff489b2f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
