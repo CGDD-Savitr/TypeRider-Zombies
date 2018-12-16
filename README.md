@@ -21,10 +21,11 @@
 * Score increases in two ways:
 	* By picking up coins.
 	* By surviving. Score is added non-stop based on your current velocity.
-* The difficulty setting affects three things:
+* The difficulty setting affects four things:
 	* Initial velocity.
 	* Acceleration (your velocity increases over time so you will lose eventually).
 	* Score multiplier.
+	* The length of the keywords.
 * Power-ups can be picked up, here are some details:
 	* They are not activated automatically.
 	* Once picked up, activate them at any time with '1', '2, or '3'.
