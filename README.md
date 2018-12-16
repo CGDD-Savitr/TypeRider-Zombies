@@ -51,11 +51,11 @@ Assets not listed below were made by us.
 
 ### Textures
 
-* Space skybox: [Adam Bielecki] (https://assetstore.unity.com/packages/2d/textures-materials/milky-way-skybox-94001)
-* Floor dirt texture [Wikipedia] (https://commons.wikimedia.org/wiki/File:Dirt_texture.jpg)
-* Asteroid texture [Wikipedia] (https://commons.wikimedia.org/wiki/File:Rock_high_resolution_texture.jpg)
-* Table wood texture [Wikipedia] (https://commons.wikimedia.org/wiki/File:Surface_wood_chipboard.jpg)
+* Space skybox: [Adam Bielecki](https://assetstore.unity.com/packages/2d/textures-materials/milky-way-skybox-94001)
+* Floor dirt texture [Wikipedia](https://commons.wikimedia.org/wiki/File:Dirt_texture.jpg)
+* Asteroid texture [Wikipedia](https://commons.wikimedia.org/wiki/File:Rock_high_resolution_texture.jpg)
+* Table wood texture [Wikipedia](https://commons.wikimedia.org/wiki/File:Surface_wood_chipboard.jpg)
 
 ### Keywords
 
-* Word-banks [first20hours] (https://github.com/first20hours/google-10000-english?fbclid=IwAR1Mi3qfB4rwz5EMBJL7slensN3lWBD2gnVuTAQLCYZwXxc2ddoF7FRxeYg)
+* Word-banks [first20hours](https://github.com/first20hours/google-10000-english?fbclid=IwAR1Mi3qfB4rwz5EMBJL7slensN3lWBD2gnVuTAQLCYZwXxc2ddoF7FRxeYg)
