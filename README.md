@@ -19,24 +19,24 @@
 
 * Obstacles damage you, avoid them. A healthbar is shown on the HUD.
 * Score increases in two ways:
-** By picking up coins.
-** By surviving. Score is added non-stop based on your current velocity.
+	* By picking up coins.
+	* By surviving. Score is added non-stop based on your current velocity.
 * The difficulty setting affects three things:
-** Initial velocity.
-** Acceleration (your velocity increases over time so you will lose eventually).
-** Score multiplier.
+	* Initial velocity.
+	* Acceleration (your velocity increases over time so you will lose eventually).
+	* Score multiplier.
 * Power-ups can be picked up, here are some details:
-** They are not activated automatically.
-** Once picked up, activate them at any time with '1', '2, or '3'.
-** You can only have one of each type of power-up at any time.
+	* They are not activated automatically.
+	* Once picked up, activate them at any time with '1', '2, or '3'.
+	* You can only have one of each type of power-up at any time.
 * Using power-ups helps you survive, there are three types:
-** Invulnerability: Become invulnerable for a few seconds. Keybind: '1'.
-** Slow-motion: Slow time for a few seconds. Keybind: '2'.
-** WASD: Move freely for a few seconds with the WASD or arrow keys. Keybind: '3'.
+	* Invulnerability: Become invulnerable for a few seconds. Keybind: '1'.
+	* Slow-motion: Slow time for a few seconds. Keybind: '2'.
+	* WASD: Move freely for a few seconds with the WASD or arrow keys. Keybind: '3'.
 * Keywords:
-** Correct letters are highlighted green.
-** Wrong letters are highlighted red.
-** Letters that go past the length of the word are displayed as red asterisks.
+	* Correct letters are highlighted green.
+	* Wrong letters are highlighted red.
+	* Letters that go past the length of the word are displayed as red asterisks.
 
 
 ## Attributions
